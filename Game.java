@@ -20,7 +20,7 @@ public class Game {
 		frame.add(gamePanel, BorderLayout.CENTER);
 		//frame.add(console, BorderLayout.EAST);
 
-		frame.setSize(800, 800);
+		frame.setSize(500, 500);
 		//frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 

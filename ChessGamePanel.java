@@ -125,10 +125,27 @@ public class ChessGamePanel extends JPanel{
 
 	// Dessine une case de la grille avec la couleur demandée
 	void drawCell(Graphics g, int line, int column, int cellSize, Color color) {
+		
+		boolean cellIsBlack;
+		boolean cellIsGray;
+		
+		int sumLineColumn = line + column;
+		
+		if (sumLineColumn % 2 == 0) {
+			cellIsBlack = true;
+		} else {
+			cellIsBlack = false;
+		}
+		cellIsGray = !cellIsBlack;
+		
 		int cellX = column * cellSize + borderSize;
 		int cellY = line * cellSize + borderSize;
 
-		g.setColor(color);
+		// Dessin des rectangles de la grille
+		if (cellIsBlack)
+			g.setColor(Color.DARK_GRAY);
+		if (cellIsGray)
+			g.setColor(Color.WHITE);
 		g.fillRect(cellX, cellY, cellSize - 1, cellSize - 1);
 	}
 	
