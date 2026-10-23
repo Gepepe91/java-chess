@@ -25,7 +25,7 @@ public class Game {
 		frame.setVisible(true);
 
 		//console.redirectSystemOut();
-		System.out.println("This is Tetris!");
+		System.out.println("This is chess!");
 
 		gamePanel.requestFocusInWindow();
 

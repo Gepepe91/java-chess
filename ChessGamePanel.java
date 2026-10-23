@@ -69,19 +69,34 @@ public class ChessGamePanel extends JPanel{
 				} 
 				*/
 				
+				if (e.getKeyCode() == KeyEvent.VK_SPACE && !chessGame.playing) {
+					chessGame.startTurn();
+				}
+				else if (e.getKeyCode() != KeyEvent.VK_SPACE && chessGame.playing)
+					chessGame.invalidMove();
+				else if (e.getKeyCode() == KeyEvent.VK_SPACE && chessGame.playing)
+					chessGame.endTurn();
 				repaint();
 			}
 		});
 
+		
+		// Here, the "timer" is just a loop waiting for player input. All the turn-based logic is in
+		// ChessGame.java
+		
+		/*
 		final Timer timer = new Timer();
 
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				chessGame.update();
-				repaint();
+				if (chessGame.hasPlayed()) {
+					chessGame.update();
+					repaint();
+				}
 			}
-		}, 1000, 500);
+		}, 100, 50);
+		*/
 	}
 	
 	
