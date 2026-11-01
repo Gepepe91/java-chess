@@ -1,11 +1,14 @@
 package chess;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +76,15 @@ public class ChessGamePanel extends JPanel {
 					chessGame.invalidMove();
 				else if (e.getKeyCode() == KeyEvent.VK_SPACE && chessGame.playing)
 					chessGame.endTurn();
+				repaint();
+			}
+		});
+		
+		addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent m) {
+				int x = m.getX();
+				int y = m.getY();
+				System.out.println("Mouse : " + x + " , " + y);
 				repaint();
 			}
 		});
