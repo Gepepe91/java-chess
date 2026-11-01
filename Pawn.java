@@ -1,8 +1,18 @@
 package chess;
 
 public class Pawn extends Piece {
-    Pawn(Position position, int color) { super(position, color); }
+	
+	Pawn(){
+		position = new Position(0,0);
+		color = 1;
+	}
+	
+    Pawn(Position position, int color) {
+    	super(position, color);
+    	}
 
     @Override
-    String getType() { return "pawn"; }
+    String getType() {
+    	return "pawn";
+    	}
 }

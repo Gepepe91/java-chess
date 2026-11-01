@@ -28,6 +28,8 @@ public class ChessGame {
 		playing = false;
 		
 		isWhiteTurn = true;
+		
+		initGame();
 	}
 	
 	void initGame() {

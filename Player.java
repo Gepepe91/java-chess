@@ -19,27 +19,27 @@ public class Player {
 	Player(String id){
 		this.id = id;
 		
-		pawn1 = new Piece();
-		pawn2 = new Piece();
-		pawn3 = new Piece();
-		pawn4 = new Piece();
-		pawn5 = new Piece();
-		pawn6 = new Piece();
-		pawn7 = new Piece();
-		pawn8 = new Piece();
+		pawn1 = new Pawn();
+		pawn2 = new Pawn();
+		pawn3 = new Pawn();
+		pawn4 = new Pawn();
+		pawn5 = new Pawn();
+		pawn6 = new Pawn();
+		pawn7 = new Pawn();
+		pawn8 = new Pawn();
 		
-		leftBishop = new Piece();
-		rightBishop = new Piece();
+		leftBishop = new Bishop();
+		rightBishop = new Bishop();
 		
-		leftKnight = new Piece();
-		rightKnight = new Piece();
+		leftKnight = new Knight();
+		rightKnight = new Knight();
 		
-		leftRook = new Piece();
-		rightRook = new Piece();
+		leftRook = new Rook();
+		rightRook = new Rook();
 		
-		queen = new Piece();
+		queen = new Queen();
 		
-		king = new Piece();
+		king = new King();
 	}
 
 }

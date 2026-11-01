@@ -99,7 +99,7 @@ public class ChessGamePanel extends JPanel {
 		// 3. Le message
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.BOLD, (int) Math.sqrt(getWidth() * getHeight()) / 20));
-		g.drawString(chessGame.message, 2 * getWidth() / 4, 3 * getHeight() / 4);
+		//g.drawString(chessGame.message, 2 * getWidth() / 4, 3 * getHeight() / 4);
 	}
 
 	void drawCell(Graphics g, int line, int column, int cellSize, Color color) {
