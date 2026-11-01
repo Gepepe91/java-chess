@@ -108,7 +108,7 @@ public class ChessGamePanel extends JPanel {
 		int cellX = column * cellSize + borderSize;
 		int cellY = line * cellSize + borderSize;
 
-		g.setColor(cellIsBlack ? Color.DARK_GRAY : Color.WHITE);
+		g.setColor(cellIsBlack ? Color.WHITE : Color.DARK_GRAY);
 		g.fillRect(cellX, cellY, cellSize - 1, cellSize - 1);
 	}
 
@@ -144,7 +144,7 @@ public class ChessGamePanel extends JPanel {
 
 		int x = piece.position.column * cellSize + borderSize; //defines the sizes of the images
 		int y = piece.position.line * cellSize + borderSize;
-		g.drawImage(img, x, y, cellSize - 1, cellSize - 1, this); // actually draw the images
+		g.drawImage(img, x, y, cellSize - 5, cellSize - 5, this); // actually draw the images
 	}
 
 	private void loadImages() {
