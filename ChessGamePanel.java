@@ -61,7 +61,7 @@ public class ChessGamePanel extends JPanel {
 	ChessGamePanel() {
 		setFocusable(true);
 
-		chessGame.initGame();   // place les pièces sur l'échiquier
+		chessGame.initGame();   // move pieces from (0,0) to correct places
 		loadImages();           // charge les sprites une seule fois
 
 		addKeyListener(new KeyAdapter() {

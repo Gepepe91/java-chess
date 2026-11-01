@@ -46,7 +46,7 @@ public class Player {
 	void initPlayer() {
 		if (id == "white")
 			initWhitePlayer();
-		if (id == "black")
+		else if (id == "black")
 			initBlackPlayer();
 		else
 			System.out.println("Player is neither white or black");
