@@ -4,7 +4,7 @@ public class Piece {
 		
 		Position position;
 		
-		private String type;
+		String type; // should be private
 		
 		boolean isAlive;
 
@@ -21,7 +21,9 @@ public class Piece {
 			this.color = color;
 		}
 		
-		abstract String getType();   // "pawn", "rook", ...
+		String getType() {
+			return type;
+		};   // "pawn", "rook", ...
 		
 		void moveTo(Position other){
 			this.position = other;

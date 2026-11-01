@@ -9,7 +9,7 @@ public class ChessGame {
 	
 	String message;
 	
-	Position selectedPosition;
+	Position selectedPosition; //maybe better if it's a player property?
 	
 	boolean playing;
 	
@@ -32,6 +32,9 @@ public class ChessGame {
 	
 	void initGame() {
 		//We place all the pieces of the board
+		
+		//better create a initPlayer method in Player and call it here.
+		// Issue : create more abstraction on pieces localization.
 		
 		// whitePlayer
 		whitePlayer.pawn1.moveTo(new Position(0,6));
@@ -56,7 +59,6 @@ public class ChessGame {
 		whitePlayer.king.moveTo(new Position(4,7));
 		
 		// blackPlayer
-		
 		blackPlayer.pawn1.moveTo(new Position(0,1));
 		blackPlayer.pawn2.moveTo(new Position(1,1));
 		blackPlayer.pawn3.moveTo(new Position(2,1));
