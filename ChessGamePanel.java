@@ -26,6 +26,7 @@ public class ChessGamePanel extends JPanel {
 	 constructor ChessGamePanel()
 	 	do chessGame.initGame()
 	 	set key listeners
+	 	set mouse listeners
 	 	
 	 void paintComponent(Graphics g)
 	 	define cells size
@@ -52,7 +53,8 @@ public class ChessGamePanel extends JPanel {
 	 	the two of them makes all file names
 	 	Loop on them and explicitly look for corresponding files in the media directory
 	 	load them with Image method
-	 
+	 	
+	 Idea : method selectCell that calculate which cell has been clicked
 	 */
 
 	private final Map<String, Image> images = new HashMap<>();// ?
@@ -60,6 +62,12 @@ public class ChessGamePanel extends JPanel {
 	ChessGame chessGame = new ChessGame();
 
 	int borderSize = 30;
+	// Need to make those variables global because they are called in multiples methods
+	//int cellWidth = (getWidth() - 2 * borderSize) / chessGame.gameGrid.nbColumns;
+	//int cellHeight = (getHeight() - 2 * borderSize) / chessGame.gameGrid.nbLines;
+	//int cellSize = Math.min(cellWidth, cellHeight);
+	
+	int pixelXClicked, pixelYClicked;
 
 	ChessGamePanel() {
 		setFocusable(true);
@@ -82,12 +90,36 @@ public class ChessGamePanel extends JPanel {
 		
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent m) {
-				int x = m.getX();
-				int y = m.getY();
-				System.out.println("Mouse : " + x + " , " + y);
+				pixelXClicked = m.getX();
+				pixelYClicked = m.getY();
+				System.out.println("Mouse : " + pixelXClicked + " , " + pixelYClicked);
+				//Position selectedCell = selectCell(pixelXClicked,pixelYClicked);
+				//selectedCell.print();
 				repaint();
+				
+				
 			}
 		});
+	}
+	
+	Position selectCell(int x, int y, int cellSize, int borderSize) {
+		/*
+		 Should return only the selected cell
+		 */
+		int cellUpLimit, cellDownLimit, cellLeftLimit, cellRightLimit;
+		Position selectedCell = new Position();
+		for (int line = 0; line < chessGame.gameGrid.nbLines; line++) {
+			for (int column = 0; column < chessGame.gameGrid.nbColumns; column++) {
+				cellUpLimit = line*cellSize + borderSize;
+				cellLeftLimit = column*cellSize + borderSize;
+				cellDownLimit = cellUpLimit + cellSize;
+				cellRightLimit = cellLeftLimit + cellSize;
+				
+				if (cellLeftLimit < x && x < cellRightLimit && cellUpLimit < y && y < cellDownLimit)
+					selectedCell.setPosition(line, column);
+			}
+		}
+		return selectedCell;
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -96,6 +128,7 @@ public class ChessGamePanel extends JPanel {
 		int cellWidth = (getWidth() - 2 * borderSize) / chessGame.gameGrid.nbColumns;
 		int cellHeight = (getHeight() - 2 * borderSize) / chessGame.gameGrid.nbLines;
 		int cellSize = Math.min(cellWidth, cellHeight);
+		
 
 		// 1. Les cases
 		for (int line = 0; line < chessGame.gameGrid.nbLines; line++) {
@@ -112,6 +145,10 @@ public class ChessGamePanel extends JPanel {
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.BOLD, (int) Math.sqrt(getWidth() * getHeight()) / 20));
 		//g.drawString(chessGame.message, 2 * getWidth() / 4, 3 * getHeight() / 4);
+		
+		// 4. Select a cell
+		Position selectedCell = selectCell(pixelXClicked, pixelYClicked, cellSize, borderSize);
+		selectedCell.print();
 	}
 
 	void drawCell(Graphics g, int line, int column, int cellSize, Color color) {
@@ -165,7 +202,6 @@ public class ChessGamePanel extends JPanel {
 
 		for (String c : colors) {
 			for (String t : types) {
-				// Tes fichiers s'appellent "crook" : à renommer en "rook" si tu préfères
 				String fileName = t;
 				File file = new File("/Users/gabriel/Documents/Etudes/M3/JAVA/Perso/src/chess/media/" + c + "_" + fileName + ".png");
 
@@ -177,4 +213,6 @@ public class ChessGamePanel extends JPanel {
 			}
 		}
 	}
+	
+	
 }
