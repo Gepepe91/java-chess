@@ -101,5 +101,24 @@ public class Player {
 		king.moveTo(new Position(0,4));
 		
 	}
+	
+	Piece[] getPieces() {
+	    return new Piece[] {
+	        pawn1, pawn2, pawn3, pawn4, pawn5, pawn6, pawn7, pawn8,
+	        leftRook, rightRook, leftKnight, rightKnight,
+	        leftBishop, rightBishop, queen, king
+	    };
+	}
+	
+	Piece getPieceAt(Position cell) {
+	    for (Piece piece : getPieces()) {
+	        if (piece.isAlive
+	                && piece.position.line == cell.line
+	                && piece.position.column == cell.column) {
+	            return piece;
+	        }
+	    }
+	    return null;   // nobody there
+	}
 
 }

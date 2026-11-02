@@ -96,10 +96,15 @@ public class ChessGamePanel extends JPanel {
 
 		        Position clicked = selectCell(pixelXClicked, pixelYClicked, computeCellSize(), borderSize);
 
-		        if (clicked != null) {              // outside the board: do nothing
+		        if (clicked != null) {
+		            System.out.println("Selected (" + clicked.line + " , " + clicked.column + ")");
 		            selectedCell = clicked;
-		            chessGame.testMouse(selectedCell);
+		            //chessGame.testMouse(selectedCell);
+		           // chessGame.clickOnCell(selectedCell);
+		            chessGame.newClick(selectedCell);
 		        }
+		        else
+		        	System.out.println("Error : click out of bounds");
 		        repaint();
 		    }
 		});
@@ -116,8 +121,9 @@ public class ChessGamePanel extends JPanel {
 	        for (int column = 0; column < chessGame.gameGrid.nbColumns; column++) {
 	            int top  = line * cellSize + borderSize;
 	            int left = column * cellSize + borderSize;
-	            if (x >= left && x < left + cellSize && y >= top && y < top + cellSize)
-	                return new Position(line, column);
+	            if (x >= left && x < left + cellSize && y >= top && y < top + cellSize) {
+	            	return new Position(line, column);
+	                }
 	        }
 	    }
 	    return null;
@@ -148,10 +154,9 @@ public class ChessGamePanel extends JPanel {
 		//g.drawString(chessGame.message, 2 * getWidth() / 4, 3 * getHeight() / 4);
 		
 		// 4. Select a cell
-		selectedCell = selectCell(pixelXClicked, pixelYClicked, cellSize, borderSize);
+		//selectedCell = selectCell(pixelXClicked, pixelYClicked, cellSize, borderSize);
 		//System.out.print("Selected cell : ");
 		//selectedCell.print();
-		chessGame.testMouse(selectedCell);
 	}
 
 	void drawCell(Graphics g, int line, int column, int cellSize, Color color) {
@@ -166,15 +171,15 @@ public class ChessGamePanel extends JPanel {
 
 	// Rassemble toutes les pièces d'un joueur et les dessine
 	void drawPlayerPieces(Graphics g, Player player, String colorName, int cellSize) {
-		Piece[] pieces = {
+		/*Piece[] pieces = {
 			player.pawn1, player.pawn2, player.pawn3, player.pawn4,
 			player.pawn5, player.pawn6, player.pawn7, player.pawn8,
 			player.leftRook, player.rightRook,
 			player.leftKnight, player.rightKnight,
 			player.leftBishop, player.rightBishop,
 			player.queen, player.king
-		};
-		for (Piece piece : pieces) {
+		};*/
+		for (Piece piece : player.getPieces()) {
 			drawPiece(g, piece, colorName, cellSize);
 		}
 	}

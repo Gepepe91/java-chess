@@ -20,7 +20,7 @@ public class Position {
 		this.column = column;
 	}
 	
-	boolean equals(Position other) {
+	boolean isEqual(Position other) {
 		if (this.line == other.line && this.column == other.column)
 			return true;
 		return false;

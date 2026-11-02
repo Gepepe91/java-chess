@@ -9,9 +9,11 @@ public class ChessGame {
 	
 	String message;
 	
-	Position selectedPosition; //maybe better if it's a player property?
+	Piece selectedPiece;
+	Piece targetedPiece;
 	
-	boolean playing;
+	boolean selectMode = true;
+	boolean targetMode = false;
 	
 	boolean isWhiteTurn;
 	
@@ -21,49 +23,18 @@ public class ChessGame {
 		whitePlayer = new Player("white");
 		blackPlayer = new Player("black");
 		
-		selectedPosition = null;
+		selectedPiece = new Piece();
 		
 		message = "This is a chess game";
-		
-		playing = false;
 		
 		isWhiteTurn = true;
 	}
 	
 	void initGame() {
-		//We place all the pieces of the board
-		
-		//better create a initPlayer method in Player and call it here.
-		// Issue : create more abstraction on pieces localization.
+		//Place all the pieces of the board
 		
 		whitePlayer.initPlayer();
 		blackPlayer.initPlayer();
-	}
-	
-	boolean hasPlayed() {
-		return true;
-	}
-	
-	void update() {
-		System.out.println("Game loop");
-	}
-	
-	void startTurn() {
-		System.out.println("Turn started");
-		playing = true;
-	}
-	
-	void selectPosition(Position position) {
-		selectedPosition = position;
-	}
-	
-	void invalidMove() {
-		System.out.println("Invalid move : press spacebar to end the turn.");
-	}
-	
-	void endTurn() {
-		System.out.println("Turn ended");
-		playing = false;
 	}
 	
 	void testMouse(Position test) {
@@ -71,4 +42,56 @@ public class ChessGame {
 	    	return;
 	    this.blackPlayer.pawn1.moveTo(test);
 	}
+	
+	void newClick(Position click) {
+		System.out.println("new click");
+		
+		if (selectMode) {
+			selectPiece(click);
+		}
+		else if (targetMode) {
+			targetPosition(click);
+		}
+		else
+			System.out.println("Error at newClick");
+	}
+	
+	void selectPiece(Position selectionPosition) {
+		selectedPiece = getPieceAt(selectionPosition);
+		if (selectedPiece == null)
+			return;
+		selectMode = false;
+		targetMode = true;
+		System.out.println("target mode");
+	}
+	
+	void targetPosition(Position target) {
+		targetedPiece = getPieceAt(target);
+		
+		if (target.isEqual(selectedPiece.position)) {
+			selectMode = true;
+			targetMode = false;
+			System.out.println("select mode");
+			return;
+		}
+				
+		if (selectedPiece.canMoveTo(target)) {
+			if (targetedPiece != null) {
+				targetedPiece.isAlive = false;
+				System.out.println("Kill!");
+			}
+			selectedPiece.moveTo(target);
+			selectMode = true;
+			targetMode = false;
+			System.out.println("select mode");
+		}
+			
+	}
+		
+	Piece getPieceAt(Position cell) {
+	    Piece p = whitePlayer.getPieceAt(cell);
+	    if (p != null) return p;
+	    return blackPlayer.getPieceAt(cell);
+	}
+	
 }

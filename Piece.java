@@ -18,6 +18,7 @@ public class Piece {
 
 		Piece(Position position, int color) {
 			this.position = new Position(position.line, position.column);
+			isAlive = true;
 			this.color = color;
 		}
 		
@@ -27,6 +28,10 @@ public class Piece {
 		
 		void moveTo(Position other){
 			this.position = other;
+		}
+		
+		boolean canMoveTo(Position other) {
+			return true;
 		}
 
 	}
