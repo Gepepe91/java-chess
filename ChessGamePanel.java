@@ -75,19 +75,6 @@ public class ChessGamePanel extends JPanel {
 
 		chessGame.initGame();   // move pieces from (0,0) to correct places
 		loadImages();           // charge les sprites une seule fois
-
-		addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_SPACE && !chessGame.playing) {
-					chessGame.startTurn();
-				}
-				else if (e.getKeyCode() != KeyEvent.VK_SPACE && chessGame.playing)
-					chessGame.invalidMove();
-				else if (e.getKeyCode() == KeyEvent.VK_SPACE && chessGame.playing)
-					chessGame.endTurn();
-				repaint();
-			}
-		});
 		
 		addMouseListener(new MouseAdapter() {
 		    public void mousePressed(MouseEvent m) {
