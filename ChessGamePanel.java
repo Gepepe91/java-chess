@@ -22,6 +22,9 @@ public class ChessGamePanel extends JPanel {
 	 Description of this mess of a vibe-coded class
 	 
 	 create chessGame
+	 affect borderSize
+	 declare pixelXClicked and pixelYClicked
+	 declare selectedCell
 	 
 	 constructor ChessGamePanel()
 	 	do chessGame.initGame()
@@ -30,9 +33,10 @@ public class ChessGamePanel extends JPanel {
 	 	
 	 void paintComponent(Graphics g)
 	 	define cells size
-	 	draw black and white alternance calling drawcell
+	 	draw black and white alternance calling drawCell
 	 	call drawPlayerPieces(chessGame.playerWhite)
 	 	write message
+	 	select a cell
 	 	
 	 void drawCell()
 	 	similar to Tetris, draw black or white
@@ -62,12 +66,9 @@ public class ChessGamePanel extends JPanel {
 	ChessGame chessGame = new ChessGame();
 
 	int borderSize = 30;
-	// Need to make those variables global because they are called in multiples methods
-	//int cellWidth = (getWidth() - 2 * borderSize) / chessGame.gameGrid.nbColumns;
-	//int cellHeight = (getHeight() - 2 * borderSize) / chessGame.gameGrid.nbLines;
-	//int cellSize = Math.min(cellWidth, cellHeight);
 	
-	int pixelXClicked, pixelYClicked;
+	int pixelXClicked, pixelYClicked; //Need to be global variable of the panel
+	Position selectedCell;
 
 	ChessGamePanel() {
 		setFocusable(true);
@@ -89,46 +90,46 @@ public class ChessGamePanel extends JPanel {
 		});
 		
 		addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent m) {
-				pixelXClicked = m.getX();
-				pixelYClicked = m.getY();
-				System.out.println("Mouse : " + pixelXClicked + " , " + pixelYClicked);
-				//Position selectedCell = selectCell(pixelXClicked,pixelYClicked);
-				//selectedCell.print();
-				repaint();
-				
-				
-			}
+		    public void mousePressed(MouseEvent m) {
+		        pixelXClicked = m.getX();
+		        pixelYClicked = m.getY();
+
+		        Position clicked = selectCell(pixelXClicked, pixelYClicked, computeCellSize(), borderSize);
+
+		        if (clicked != null) {              // outside the board: do nothing
+		            selectedCell = clicked;
+		            chessGame.testMouse(selectedCell);
+		        }
+		        repaint();
+		    }
 		});
 	}
 	
+	private int computeCellSize() {
+	    int cellWidth  = (getWidth()  - 2 * borderSize) / chessGame.gameGrid.nbColumns;
+	    int cellHeight = (getHeight() - 2 * borderSize) / chessGame.gameGrid.nbLines;
+	    return Math.min(cellWidth, cellHeight);
+	}
+	
 	Position selectCell(int x, int y, int cellSize, int borderSize) {
-		/*
-		 Should return only the selected cell
-		 */
-		int cellUpLimit, cellDownLimit, cellLeftLimit, cellRightLimit;
-		Position selectedCell = new Position();
-		for (int line = 0; line < chessGame.gameGrid.nbLines; line++) {
-			for (int column = 0; column < chessGame.gameGrid.nbColumns; column++) {
-				cellUpLimit = line*cellSize + borderSize;
-				cellLeftLimit = column*cellSize + borderSize;
-				cellDownLimit = cellUpLimit + cellSize;
-				cellRightLimit = cellLeftLimit + cellSize;
-				
-				if (cellLeftLimit < x && x < cellRightLimit && cellUpLimit < y && y < cellDownLimit)
-					selectedCell.setPosition(line, column);
-			}
-		}
-		return selectedCell;
+	    for (int line = 0; line < chessGame.gameGrid.nbLines; line++) {
+	        for (int column = 0; column < chessGame.gameGrid.nbColumns; column++) {
+	            int top  = line * cellSize + borderSize;
+	            int left = column * cellSize + borderSize;
+	            if (x >= left && x < left + cellSize && y >= top && y < top + cellSize)
+	                return new Position(line, column);
+	        }
+	    }
+	    return null;
 	}
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		int cellWidth = (getWidth() - 2 * borderSize) / chessGame.gameGrid.nbColumns;
-		int cellHeight = (getHeight() - 2 * borderSize) / chessGame.gameGrid.nbLines;
-		int cellSize = Math.min(cellWidth, cellHeight);
-		
+		//int cellWidth = (getWidth() - 2 * borderSize) / chessGame.gameGrid.nbColumns;
+		//int cellHeight = (getHeight() - 2 * borderSize) / chessGame.gameGrid.nbLines;
+		//int cellSize = Math.min(cellWidth, cellHeight);
+		int cellSize = computeCellSize();
 
 		// 1. Les cases
 		for (int line = 0; line < chessGame.gameGrid.nbLines; line++) {
@@ -147,8 +148,10 @@ public class ChessGamePanel extends JPanel {
 		//g.drawString(chessGame.message, 2 * getWidth() / 4, 3 * getHeight() / 4);
 		
 		// 4. Select a cell
-		Position selectedCell = selectCell(pixelXClicked, pixelYClicked, cellSize, borderSize);
-		selectedCell.print();
+		selectedCell = selectCell(pixelXClicked, pixelYClicked, cellSize, borderSize);
+		//System.out.print("Selected cell : ");
+		//selectedCell.print();
+		chessGame.testMouse(selectedCell);
 	}
 
 	void drawCell(Graphics g, int line, int column, int cellSize, Color color) {

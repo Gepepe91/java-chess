@@ -65,5 +65,10 @@ public class ChessGame {
 		System.out.println("Turn ended");
 		playing = false;
 	}
-
+	
+	void testMouse(Position test) {
+	    if (test == null)
+	    	return;
+	    this.blackPlayer.pawn1.moveTo(test);
+	}
 }
