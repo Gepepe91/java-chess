@@ -19,14 +19,20 @@ public class Player {
 	Player(String id){
 		this.id = id;
 		
-		pawn1 = new Pawn();
-		pawn2 = new Pawn();
-		pawn3 = new Pawn();
-		pawn4 = new Pawn();
-		pawn5 = new Pawn();
-		pawn6 = new Pawn();
-		pawn7 = new Pawn();
-		pawn8 = new Pawn();
+		int color;
+		if (id == "white")
+			color = 0;
+		else
+			color = 1;
+		
+		pawn1 = new Pawn(color);
+		pawn2 = new Pawn(color);
+		pawn3 = new Pawn(color);
+		pawn4 = new Pawn(color);
+		pawn5 = new Pawn(color);
+		pawn6 = new Pawn(color);
+		pawn7 = new Pawn(color);
+		pawn8 = new Pawn(color);
 		
 		leftBishop = new Bishop();
 		rightBishop = new Bishop();
@@ -119,6 +125,14 @@ public class Player {
 	        }
 	    }
 	    return null;   // nobody there
+	}
+	
+	void constructAllMoveset() {
+		for (Piece piece : getPieces()) {
+			if (piece.isAlive)
+				piece.constructMoveset(new Grid(8,8));
+		}
+		System.out.println("Movesets constructed");
 	}
 
 }

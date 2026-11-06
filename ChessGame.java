@@ -12,8 +12,8 @@ public class ChessGame {
 	Piece selectedPiece;
 	Piece targetedPiece;
 	
-	boolean selectMode = true;
-	boolean targetMode = false;
+	boolean selectMode;
+	boolean targetMode;
 	
 	boolean isWhiteTurn;
 	
@@ -27,7 +27,12 @@ public class ChessGame {
 		
 		message = "This is a chess game";
 		
+		selectMode = true;
+		targetMode = false;
+		
 		isWhiteTurn = true;
+		
+		displayMode();
 	}
 	
 	void initGame() {
@@ -35,16 +40,28 @@ public class ChessGame {
 		
 		whitePlayer.initPlayer();
 		blackPlayer.initPlayer();
+		
 	}
 	
+	/*
 	void testMouse(Position test) {
 	    if (test == null)
 	    	return;
 	    this.blackPlayer.pawn1.moveTo(test);
 	}
+	*/
+	
+	void displayMode() {
+		if (selectMode)
+			System.out.println("select mode");
+		else if (targetMode)
+			System.out.println("target mode");
+		else
+			System.out.println("no mode");
+	}
 	
 	void newClick(Position click) {
-		System.out.println("new click");
+		//System.out.println("new click");
 		
 		if (selectMode) {
 			selectPiece(click);
@@ -54,15 +71,18 @@ public class ChessGame {
 		}
 		else
 			System.out.println("Error at newClick");
+		
+		displayMode();
 	}
 	
 	void selectPiece(Position selectionPosition) {
 		selectedPiece = getPieceAt(selectionPosition);
 		if (selectedPiece == null)
 			return;
+		System.out.println("Piece selected : " + selectedPiece.type);
+		selectedPiece.constructMoveset(gameGrid);
 		selectMode = false;
 		targetMode = true;
-		System.out.println("target mode");
 	}
 	
 	void targetPosition(Position target) {
@@ -71,7 +91,7 @@ public class ChessGame {
 		if (target.isEqual(selectedPiece.position)) {
 			selectMode = true;
 			targetMode = false;
-			System.out.println("select mode");
+			System.out.println("Cancel selection");
 			return;
 		}
 				
@@ -81,17 +101,26 @@ public class ChessGame {
 				System.out.println("Kill!");
 			}
 			selectedPiece.moveTo(target);
+			isWhiteTurn = !isWhiteTurn;
 			selectMode = true;
 			targetMode = false;
-			System.out.println("select mode");
 		}
 			
 	}
-		
+	
+	/*
 	Piece getPieceAt(Position cell) {
 	    Piece p = whitePlayer.getPieceAt(cell);
-	    if (p != null) return p;
+	    if (p != null)
+	    	return p;
 	    return blackPlayer.getPieceAt(cell);
+	}
+	*/
+	
+	Piece getPieceAt(Position cell) {
+		if (isWhiteTurn)
+			return whitePlayer.getPieceAt(cell);
+		return blackPlayer.getPieceAt(cell);
 	}
 	
 }

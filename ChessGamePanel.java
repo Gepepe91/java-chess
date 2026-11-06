@@ -84,7 +84,7 @@ public class ChessGamePanel extends JPanel {
 		        Position clicked = selectCell(pixelXClicked, pixelYClicked, computeCellSize(), borderSize);
 
 		        if (clicked != null) {
-		            System.out.println("Selected (" + clicked.line + " , " + clicked.column + ")");
+		            //System.out.println("Selected (" + clicked.line + " , " + clicked.column + ")");
 		            selectedCell = clicked;
 		            //chessGame.testMouse(selectedCell);
 		           // chessGame.clickOnCell(selectedCell);

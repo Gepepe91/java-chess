@@ -29,5 +29,13 @@ public class Position {
 	void print() {
 		System.out.println("(" + this.line + "," + this.column + ")");
 	}
+	
+	Position addLine(int displacement) {
+		return new Position(line + displacement, column);
+	}
+	
+	Position addColumn(int displacement) {
+		return new Position(line, column + displacement);
+	}
 
 }

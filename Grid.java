@@ -19,4 +19,13 @@ public class Grid {
 		this.cells = new Position[nbLines][nbColumns];   // toutes les cases valent null au départ
 	}
 	
+	Position getCellPosition(int line, int column) {
+		return cells[line][column];
+	}
+	
+	boolean isInside(Position position) {
+	    return position.line >= 0 && position.line < nbLines
+	        && position.column >= 0 && position.column < nbColumns;
+	}
+	
 }

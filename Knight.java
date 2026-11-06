@@ -15,4 +15,14 @@ public class Knight extends Piece {
     String getType() {
     	return "knight";
     	}
+    
+    @Override
+    boolean canMoveTo(Position other) {
+    	
+    	position.print();
+    	if (position.isEqual(other.addOnX(-1)))
+    		return true;
+    	
+    	return false;
+    }
 }
