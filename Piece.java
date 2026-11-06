@@ -62,8 +62,7 @@ public class Piece {
 	    	
 	    }
 		
-		void constructMoveset(Grid gameGrid) {
-		}
+	    void constructMoveset(ChessGame game) { }
 		
 		int getDirection() {
 			if (color == 1)

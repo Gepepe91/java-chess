@@ -126,13 +126,5 @@ public class Player {
 	    }
 	    return null;   // nobody there
 	}
-	
-	void constructAllMoveset() {
-		for (Piece piece : getPieces()) {
-			if (piece.isAlive)
-				piece.constructMoveset(new Grid(8,8));
-		}
-		System.out.println("Movesets constructed");
-	}
 
 }

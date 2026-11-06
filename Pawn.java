@@ -19,15 +19,21 @@ public class Pawn extends Piece {
     	}
     
     @Override
-    void constructMoveset(Grid gameGrid) {
+    void constructMoveset(ChessGame game) {
         moveset.clear();
 
-        // Blanc monte (line diminue), noir descend (line augmente)
-        //int direction = (color == 0) ? -1 : 1;
-
         Position forward = new Position(position.line + getDirection(), position.column);
-        if (gameGrid.isInside(forward))
+        Position forwardLeft = new Position(position.line + getDirection(), position.column + getDirection());
+        Position forwardRight = new Position(position.line + getDirection(), position.column - getDirection());
+
+        if (forward.isInside(game.gameGrid) && !game.isOccupied(forward))
             moveset.add(forward);
+        
+        if (forwardLeft.isInside(game.gameGrid) && game.isOccupied(forwardLeft))
+            moveset.add(forwardLeft);
+        
+        if (forwardRight.isInside(game.gameGrid) && game.isOccupied(forwardRight))
+            moveset.add(forwardRight);
     }
     
     

@@ -23,9 +23,4 @@ public class Grid {
 		return cells[line][column];
 	}
 	
-	boolean isInside(Position position) {
-	    return position.line >= 0 && position.line < nbLines
-	        && position.column >= 0 && position.column < nbColumns;
-	}
-	
 }

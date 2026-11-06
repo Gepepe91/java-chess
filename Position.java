@@ -37,5 +37,10 @@ public class Position {
 	Position addColumn(int displacement) {
 		return new Position(line, column + displacement);
 	}
+	
+	boolean isInside(Grid grid) {
+	    return line >= 0 && line < grid.nbLines
+	        && column >= 0 && column < grid.nbColumns;
+	}
 
 }

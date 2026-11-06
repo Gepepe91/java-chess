@@ -80,7 +80,7 @@ public class ChessGame {
 		if (selectedPiece == null)
 			return;
 		System.out.println("Piece selected : " + selectedPiece.type);
-		selectedPiece.constructMoveset(gameGrid);
+		selectedPiece.constructMoveset(this);
 		selectMode = false;
 		targetMode = true;
 	}
@@ -96,6 +96,7 @@ public class ChessGame {
 		}
 				
 		if (selectedPiece.canMoveTo(target)) {
+			System.out.println("let's go");
 			if (targetedPiece != null) {
 				targetedPiece.isAlive = false;
 				System.out.println("Kill!");
@@ -108,19 +109,18 @@ public class ChessGame {
 			
 	}
 	
-	/*
-	Piece getPieceAt(Position cell) {
-	    Piece p = whitePlayer.getPieceAt(cell);
-	    if (p != null)
-	    	return p;
-	    return blackPlayer.getPieceAt(cell);
-	}
-	*/
 	
 	Piece getPieceAt(Position cell) {
-		if (isWhiteTurn)
-			return whitePlayer.getPieceAt(cell);
-		return blackPlayer.getPieceAt(cell);
+	    Piece position = whitePlayer.getPieceAt(cell);
+	    if (position != null)
+	        return position;
+	    return blackPlayer.getPieceAt(cell);
 	}
+
+	boolean isOccupied(Position p) {
+	    return getPieceAt(p) != null;
+	}
+	
+	
 	
 }
