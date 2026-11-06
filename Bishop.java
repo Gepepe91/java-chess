@@ -2,27 +2,14 @@ package chess;
 
 public class Bishop extends Piece {
 	
-	Bishop(){
+	Bishop(int color){
 		position = new Position(0,0);
-		color = 1;
+		this.color = color;
+		type = "bishop";
 	}
 	
     Bishop(Position position, int color) {
     	super(position, color);
+    	type = "bishop";
     	}
-
-    @Override
-    String getType() {
-    	return "bishop";
-    	}
-    
-    @Override
-    boolean canMoveTo(Position other) {
-    	
-    	position.print();
-    	if (position.isEqual(other.addOnX(-1)))
-    		return true;
-    	
-    	return false;
-    }
 }

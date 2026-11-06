@@ -2,28 +2,15 @@ package chess;
 
 public class Queen extends Piece {
 	
-	Queen(){
+	Queen(int color){
 		position = new Position(0,0);
-		color = 1;
+		this.color = color;
+		type = "queen";
 	}
 	
     Queen(Position position, int color) {
     	super(position, color);
-    	}
-
-    @Override
-    String getType() {
-    	return "queen";
-    	}
-    
-    @Override
-    boolean canMoveTo(Position other) {
-    	
-    	position.print();
-    	if (position.isEqual(other.addOnX(-1)))
-    		return true;
-    	
-    	return false;
-    	
+    	type = "queen";
     }
+    
 }

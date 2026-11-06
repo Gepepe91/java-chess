@@ -34,18 +34,18 @@ public class Player {
 		pawn7 = new Pawn(color);
 		pawn8 = new Pawn(color);
 		
-		leftBishop = new Bishop();
-		rightBishop = new Bishop();
+		leftBishop = new Bishop(color);
+		rightBishop = new Bishop(color);
 		
-		leftKnight = new Knight();
-		rightKnight = new Knight();
+		leftKnight = new Knight(color);
+		rightKnight = new Knight(color);
 		
-		leftRook = new Rook();
-		rightRook = new Rook();
+		leftRook = new Rook(color);
+		rightRook = new Rook(color);
 		
-		queen = new Queen();
+		queen = new Queen(color);
 		
-		king = new King();
+		king = new King(color);
 	}
 	
 	

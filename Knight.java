@@ -2,27 +2,15 @@ package chess;
 
 public class Knight extends Piece {
 	
-	Knight(){
+	Knight(int color){
 		position = new Position(0,0);
-		color = 1;
+		this.color = color;
+		type = "knight";
 	}
 	
     Knight(Position position, int color) {
     	super(position, color);
-    	}
-
-    @Override
-    String getType() {
-    	return "knight";
+    	type = "knight";
     	}
     
-    @Override
-    boolean canMoveTo(Position other) {
-    	
-    	position.print();
-    	if (position.isEqual(other.addOnX(-1)))
-    		return true;
-    	
-    	return false;
-    }
 }

@@ -5,18 +5,13 @@ public class Pawn extends Piece {
 	Pawn(int color){
 		position = new Position(0,0);
 		this.color = color;
-		type = "Pawn";
+		type = "pawn";
 	}
 	
     Pawn(Position position, int color) {
     	super(position, color);
-    	type = "Pawn";
-    	}
-
-    @Override
-    String getType() {
-    	return "pawn";
-    	}
+    	type = "pawn";
+    }
     
     @Override
     void constructMoveset(ChessGame game) {
