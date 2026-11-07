@@ -42,5 +42,10 @@ public class Position {
 	    return line >= 0 && line < grid.nbLines
 	        && column >= 0 && column < grid.nbColumns;
 	}
+	
+	void addMoveIfInside(Grid grid, Piece piece) {
+		if (this.isInside(grid))
+			piece.moveset.add(this);
+	}
 
 }
