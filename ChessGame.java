@@ -73,13 +73,17 @@ public class ChessGame {
 		else if (targetMode) {
 			targetPosition(click);
 		}
-		else {
+		else
 			System.out.println("Error at newClick");
-			selectMode = true;
-			targetMode = false;
-		}
 		
 		displayMode();
+	}
+	
+	void clickOutOfBound() {
+		System.out.println("Click out of bounds");
+		selectMode = true;
+		targetMode = false;
+		selectedPiece.moveset.clear();
 	}
 	
 	void selectPiece(Position selectionPosition) {

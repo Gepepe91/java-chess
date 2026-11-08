@@ -94,8 +94,9 @@ public class ChessGamePanel extends JPanel {
 		           // chessGame.clickOnCell(selectedCell);
 		            chessGame.newClick(selectedCell);
 		        }
-		        else
-		        	System.out.println("Error : click out of bounds");
+		        else {
+		        	chessGame.clickOutOfBound();
+		        }
 		        repaint();
 		    }
 		});
