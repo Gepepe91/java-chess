@@ -39,8 +39,6 @@ public class Knight extends Piece {
         downLeft.addMoveIfInside(grid, this);
         downRight.addMoveIfInside(grid, this);
         
-        displayArrayListPosition(moveset);
-        
         
     } 
     

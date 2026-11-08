@@ -3,7 +3,7 @@ package chess;
 public class Pawn extends Piece {
 	
 	Pawn(int color){
-		position = new Position(0,0);
+		position = new Position();
 		this.color = color;
 		type = "pawn";
 	}
@@ -17,9 +17,13 @@ public class Pawn extends Piece {
     void constructMoveset(ChessGame game) {
         moveset.clear();
 
+        Position doubleForward = new Position(position.line + 2*getDirection() , position.column);
         Position forward = new Position(position.line + getDirection(), position.column);
         Position forwardLeft = new Position(position.line + getDirection(), position.column + getDirection());
         Position forwardRight = new Position(position.line + getDirection(), position.column - getDirection());
+        
+        if (doubleForward.isInside(game.gameGrid) && !game.isOccupied(doubleForward) && moveCount == 0)
+        	moveset.add(doubleForward);
 
         if (forward.isInside(game.gameGrid) && !game.isOccupied(forward))
             moveset.add(forward);
