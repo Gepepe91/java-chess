@@ -68,7 +68,8 @@ public class Player {
 		pawn7.moveTo(new Position(6,6));
 		pawn8.moveTo(new Position(6,7));
 		
-		leftRook.moveTo(new Position(7,0));
+		//leftRook.moveTo(new Position(7,0));
+		leftRook.moveTo(new Position(3,4));
 		rightRook.moveTo(new Position(7,7));
 		
 		leftKnight.moveTo(new Position(7,1));

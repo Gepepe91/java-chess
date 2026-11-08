@@ -92,11 +92,15 @@ public class ChessGame {
 			return;
 		System.out.println("Piece selected : " + selectedPiece.type);
 		selectedPiece.constructMoveset(this);
+	    selectedPiece.removeAlliedTargets(this);
 		selectMode = false;
 		targetMode = true;
 	}
 	
 	void targetPosition(Position target) {
+		if (!target.isInside(gameGrid))
+	        return;
+		
 		targetedPiece = getPieceAt(target);
 		
 		if (target.isEqual(selectedPiece.position)) {
@@ -106,9 +110,6 @@ public class ChessGame {
 			System.out.println("Cancel selection");
 			return;
 		}
-		
-		if (!target.isInside(gameGrid))
-			return;
 				
 		if (selectedPiece.canMoveTo(target)) {
 			System.out.println("let's go");

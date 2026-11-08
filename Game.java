@@ -28,6 +28,8 @@ public class Game {
 		System.out.println("This is chess!");
 
 		gamePanel.requestFocusInWindow();
+		
+		System.out.println((int) (Math.sqrt(3)));
 
 	}
 

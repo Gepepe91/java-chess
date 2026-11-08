@@ -29,6 +29,8 @@ public class Pawn extends Piece {
         
         if (forwardRight.isInside(game.gameGrid) && game.isOccupied(forwardRight))
             moveset.add(forwardRight);
+        
+        //displayArrayListPosition(moveset);
     }
     
     

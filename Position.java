@@ -21,6 +21,8 @@ public class Position {
 	}
 	
 	boolean isEqual(Position other) {
+		if (other == null)
+			return false;
 		if (this.line == other.line && this.column == other.column)
 			return true;
 		return false;
@@ -46,6 +48,24 @@ public class Position {
 	void addMoveIfInside(Grid grid, Piece piece) {
 		if (this.isInside(grid))
 			piece.moveset.add(this);
+	}
+	
+	Piece getPiece(ChessGame game) {
+		return game.getPieceAt(this);
+	}
+	
+	boolean isOccupied(ChessGame game) {
+		return (this.getPiece(game) != null);
+	}
+	
+	int distanceTo(Position other) {
+	    /*
+	     * Chebyshev distance
+	     * https://en.wikipedia.org/wiki/Chebyshev_distance
+	     * Valable seulement pour des positions alignées (ligne, colonne ou diagonale).
+	     * Renvoie le nombre de cases qui séparent les deux positions.
+	     */
+	    return Math.max(Math.abs(line - other.line), Math.abs(column - other.column));
 	}
 
 }

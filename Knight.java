@@ -16,6 +16,8 @@ public class Knight extends Piece {
     @Override
     void constructMoveset(ChessGame game) {
         moveset.clear();
+        
+        //System.out.println("Construct knight moveset");
 
         Position upLeft = new Position(position.line + 2*getDirection(), position.column - getDirection());
         Position upRight = new Position(position.line + 2*getDirection(), position.column + getDirection());
@@ -36,6 +38,8 @@ public class Knight extends Piece {
         leftDown.addMoveIfInside(grid, this);
         downLeft.addMoveIfInside(grid, this);
         downRight.addMoveIfInside(grid, this);
+        
+        displayArrayListPosition(moveset);
         
         
     } 

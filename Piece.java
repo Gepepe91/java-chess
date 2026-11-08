@@ -70,5 +70,42 @@ public class Piece {
 			else
 				return -1;
 		}
+		
+		ArrayList<Object> upcastingArrayElements(ArrayList<ArrayList<Position>> array) {
+			ArrayList<Object> upcasted = new ArrayList<Object>();
+			for (int index=0 ; index < array.size(); index++) {
+				Object tempObject = array.get(index);
+				upcasted.add(tempObject);
+			}
+			
+			return upcasted;
+		}
+		
+		void displayArrayList(ArrayList<Object> array) {
+			if (array.isEmpty()) {
+				System.out.println("null");
+				return;
+			}
+			for (int index=0 ; index < array.size(); index++)
+				System.out.println(array.get(index));
+		}
+		
+		void displayArrayListPosition(ArrayList<Position> array) {
+			if (array.isEmpty())
+				System.out.println("null");
+			for (int index=0 ; index < array.size() ; index++)
+				array.get(index).print();
+		}
+		
+		void removeAlliedTargets(ChessGame game) {
+		    /*
+		     * Retire du moveset les cases occupées par une pièce de la même couleur.
+		     * À appeler après constructMoveset, quelle que soit la pièce.
+		     */
+		    moveset.removeIf(p -> {
+		        Piece other = game.getPieceAt(p);
+		        return other != null && other.color == this.color;
+		    });
+		}
 
 	}

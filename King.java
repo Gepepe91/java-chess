@@ -50,6 +50,8 @@ public class King extends Piece {
         if (backward.isInside(game.gameGrid))
         	moveset.add(backward);
         
+        //displayArrayListPosition(moveset);
+        
     }
     
 }
