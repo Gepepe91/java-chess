@@ -17,6 +17,8 @@ public class ChessGame {
 	
 	boolean isWhiteTurn;
 	
+	boolean debugMode;
+	
 	ChessGame(){
 		gameGrid = new Grid(8,8);
 		
@@ -31,6 +33,8 @@ public class ChessGame {
 		targetMode = false;
 		
 		isWhiteTurn = true;
+		
+		debugMode = false;
 		
 		displayMode();
 	}
@@ -69,8 +73,11 @@ public class ChessGame {
 		else if (targetMode) {
 			targetPosition(click);
 		}
-		else
+		else {
 			System.out.println("Error at newClick");
+			selectMode = true;
+			targetMode = false;
+		}
 		
 		displayMode();
 	}
@@ -91,6 +98,7 @@ public class ChessGame {
 		if (target.isEqual(selectedPiece.position)) {
 			selectMode = true;
 			targetMode = false;
+			selectedPiece.moveset.clear();
 			System.out.println("Cancel selection");
 			return;
 		}
@@ -105,6 +113,7 @@ public class ChessGame {
 			isWhiteTurn = !isWhiteTurn;
 			selectMode = true;
 			targetMode = false;
+			selectedPiece.moveset.clear();
 		}
 			
 	}
