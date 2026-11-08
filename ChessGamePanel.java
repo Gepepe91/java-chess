@@ -140,31 +140,17 @@ public class ChessGamePanel extends JPanel {
 		drawPlayerPieces(g, chessGame.whitePlayer, "white", cellSize);
 		drawPlayerPieces(g, chessGame.blackPlayer, "black", cellSize);
 		
-		/* TETRIS
-		// 2a. Le fantôme, sous la pièce qui tombe
-				Color ghostColor = getColor(tetrisGame.ghostTetramino.colorAndShape);
-				g.setColor(ghostColor);
-				Block[] ghostBlocks = {
-					tetrisGame.ghostTetramino.block1, tetrisGame.ghostTetramino.block2,
-					tetrisGame.ghostTetramino.block3, tetrisGame.ghostTetramino.block4
-				};
-				for (Block b : ghostBlocks) {
-					int x = b.position.column * cellSize + borderSize;
-					int y = b.position.line * cellSize + borderSize;
-					g.drawRect(x, y, cellSize - 2, cellSize - 2);
-				}
-				
-		*/
-		
 		// 2.2 Moveset
 		
 		Color movesetColor = Color.red;
 		g.setColor(movesetColor);
-		ArrayList<Position> moveset = chessGame.selectedPiece.moveset;
-		for (int index=0 ; index < moveset.size(); index++) {
-			int x = moveset.get(index).column * cellSize + borderSize;
-			int y = moveset.get(index).line * cellSize + borderSize;
-			g.drawRect(x, y, cellSize - 2, cellSize - 2);
+		if (chessGame.selectedPiece != null) {
+			ArrayList<Position> moveset = chessGame.selectedPiece.moveset;
+			for (int index=0 ; index < moveset.size(); index++) {
+				int x = moveset.get(index).column * cellSize + borderSize;
+				int y = moveset.get(index).line * cellSize + borderSize;
+				g.drawRect(x, y, cellSize - 2, cellSize - 2);
+			}
 		}
 
 		// 3. Le message

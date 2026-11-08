@@ -106,6 +106,9 @@ public class ChessGame {
 			System.out.println("Cancel selection");
 			return;
 		}
+		
+		if (!target.isInside(gameGrid))
+			return;
 				
 		if (selectedPiece.canMoveTo(target)) {
 			System.out.println("let's go");
