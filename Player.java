@@ -74,7 +74,8 @@ public class Player {
 		leftKnight.moveTo(new Position(7,1));
 		rightKnight.moveTo(new Position(7,6));
 		
-		leftBishop.moveTo(new Position(7,2));
+		//leftBishop.moveTo(new Position(7,2));
+		leftBishop.moveTo(new Position(3,4));
 		rightBishop.moveTo(new Position(7,5));
 		
 		queen.moveTo(new Position(7,3));

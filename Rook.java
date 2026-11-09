@@ -35,12 +35,6 @@ public class Rook extends Piece {
 
 		regroupInMoveset(movementAxis);
 	}
-
-	void displayMoveset() {
-		for (int index=0;index<moveset.size();index++) {
-			moveset.get(index).print();
-		}
-	}
 	
 	void checkForObstacles(ArrayList<ArrayList<Position>> movementAxis , ChessGame game) {
 		for (int index=0 ; index < movementAxis.size() ; index++) {
@@ -128,6 +122,12 @@ public class Rook extends Piece {
 	    }
 
 	    return movementAxis;
+	}
+	
+	void displayMoveset() {
+		for (int index=0;index<moveset.size();index++) {
+			moveset.get(index).print();
+		}
 	}
 	
 
