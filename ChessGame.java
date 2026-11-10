@@ -86,6 +86,12 @@ public class ChessGame {
 		selectedPiece = getPieceAt(selectionPosition);
 		if (selectedPiece == null)
 			return;
+		
+		if (selectedPiece.color == 0 && !isWhiteTurn) // if white piece and black turn
+			return;
+		if (selectedPiece.color == 1 && isWhiteTurn) // if black piece and white turn
+			return;
+		
 		//System.out.println("Piece selected : " + selectedPiece.type);
 		selectedPiece.constructMoveset(this);
 	    selectedPiece.removeAlliedTargets(this);
@@ -115,6 +121,7 @@ public class ChessGame {
 			}
 			selectedPiece.moveTo(target);
 			isWhiteTurn = !isWhiteTurn;
+			System.out.println(isWhiteTurn);
 			selectMode = true;
 			targetMode = false;
 			selectedPiece.moveset.clear();
