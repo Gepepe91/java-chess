@@ -138,5 +138,10 @@ public class Piece {
 				moveset.get(index).print();
 			}
 		}
+		
+		boolean shouldTurnIntoQueen() {
+			//false for every piece except pawns
+			return false;
+		}
 
 	}

@@ -37,5 +37,18 @@ public class Pawn extends Piece {
         //displayArrayListPosition(moveset);
     }
     
+    @Override
+    boolean shouldTurnIntoQueen() {
+    	
+    	if (color == 0 && position.line == 0)
+    		return true;
+    	
+    	if (color == 1 && position.line == 7)
+    		return true;
+    	
+    	return false;
+    	
+    }
+    
     
 }

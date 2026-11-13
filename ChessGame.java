@@ -101,10 +101,10 @@ public class ChessGame {
 	
 	void targetPosition(Position target) {
 		if (!target.isInside(gameGrid))
-	        return;
-		
+			return;
+
 		targetedPiece = getPieceAt(target);
-		
+
 		if (target.isEqual(selectedPiece.position)) {
 			selectMode = true;
 			targetMode = false;
@@ -112,23 +112,32 @@ public class ChessGame {
 			System.out.println("Cancel selection");
 			return;
 		}
-				
-		if (selectedPiece.canMoveTo(target)) {
-			//System.out.println("let's go");
-			if (targetedPiece != null) {
-				targetedPiece.isAlive = false;
-				System.out.println("Kill!");
-			}
-			selectedPiece.moveTo(target);
-			isWhiteTurn = !isWhiteTurn;
-			System.out.println(isWhiteTurn);
-			selectMode = true;
-			targetMode = false;
-			selectedPiece.moveset.clear();
-			
-			selectedPiece.moveCount++;
+
+		if (!selectedPiece.canMoveTo(target))
+			return;
+		
+		//System.out.println("let's go");
+		if (targetedPiece != null) {
+			targetedPiece.isAlive = false;
+			System.out.println("Kill!");
 		}
-			
+		
+		selectedPiece.moveTo(target);
+		isWhiteTurn = !isWhiteTurn;
+		System.out.println(isWhiteTurn);
+		selectMode = true;
+		targetMode = false;
+		selectedPiece.moveset.clear();
+
+		selectedPiece.moveCount++;
+		
+		if (selectedPiece.shouldTurnIntoQueen()) {
+			Player owner = (selectedPiece.color == 0) ? whitePlayer : blackPlayer;
+		    Piece queen = owner.promote(selectedPiece);
+		    selectedPiece = queen;
+			System.out.println("Slayyyyy 💅");
+			}
+
 	}
 	
 	

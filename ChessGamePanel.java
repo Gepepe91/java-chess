@@ -24,6 +24,7 @@ public class ChessGamePanel extends JPanel {
 	/*
 	 Description of this mess of a vibe-coded class
 	 
+	 create a HasMap<>() for the sprites
 	 create chessGame
 	 affect borderSize
 	 declare pixelXClicked and pixelYClicked
@@ -65,7 +66,7 @@ public class ChessGamePanel extends JPanel {
 	 Idea : method selectCell that calculate which cell has been clicked
 	 */
 
-	private final Map<String, Image> images = new HashMap<>();// ?
+	private final Map<String, Image> images = new HashMap<>();// pieces' sprites
 
 	ChessGame chessGame = new ChessGame();
 
