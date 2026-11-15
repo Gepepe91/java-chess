@@ -47,7 +47,7 @@ public class Position {
 	
 	void addMoveIfInside(Grid grid, Piece piece) {
 		if (this.isInside(grid))
-			piece.moveset.add(this);
+			piece.addToMoveset(this);
 	}
 	
 	Piece getPiece(ChessGame game) {

@@ -4,9 +4,22 @@ import java.util.ArrayList;
 
 public class Piece {
 		
+		// Declarations
 		private Position position;
 		
-		ArrayList<Position> moveset;
+		private ArrayList<Position> moveset; // too much of a headache to make it private
+		
+		public void clearMoveset() {
+			moveset.clear();
+		}
+		
+		public void addToMoveset(Position other) {
+			moveset.add(other);
+		}
+		
+		public ArrayList<Position> getMoveset(){
+			return moveset;
+		}
 		
 		private String type; // should be private
 		
@@ -15,6 +28,34 @@ public class Piece {
 		private int color;
 		
 		private int moveCount;
+		
+		// Constructors
+		Piece() {
+			position = new Position(0,0);
+			moveset = new ArrayList<Position>();
+			isAlive = true;
+			color = 0;
+			moveCount = 0;
+			
+		}
+		
+		Piece(int color) {
+			position = new Position(0,0);
+			moveset = new ArrayList<Position>();
+			isAlive = true;
+			this.color = color;
+			moveCount = 0;
+		}
+
+		Piece(Position position, int color) {
+			this.position = new Position(position.line, position.column);
+			moveset = new ArrayList<Position>();
+			isAlive = true;
+			this.color = color;
+			moveCount = 0;
+		}
+		
+		// Setters and getters
 		
 		public void setPosition(Position position) {
 			this.position = position;
@@ -48,37 +89,12 @@ public class Piece {
 			return color;
 		}
 		
-		public void addOneToMoveCount() {
+		public void addOneToMoveCount() { //count as a setter
 			moveCount++;
 		}
 		
 		public int getMoveCount() {
 			return moveCount;
-		}
-		
-		Piece() {
-			position = new Position(0,0);
-			moveset = new ArrayList<Position>();
-			isAlive = true;
-			color = 0;
-			moveCount = 0;
-			
-		}
-		
-		Piece(int color) {
-			position = new Position(0,0);
-			moveset = new ArrayList<Position>();
-			isAlive = true;
-			this.color = color;
-			moveCount = 0;
-		}
-
-		Piece(Position position, int color) {
-			this.position = new Position(position.line, position.column);
-			moveset = new ArrayList<Position>();
-			isAlive = true;
-			this.color = color;
-			moveCount = 0;
 		}
 		
 		public String getType() {
@@ -88,6 +104,8 @@ public class Piece {
 		public void setType(String other) {
 			type = other;
 		}
+		
+		// Public methods
 		
 		void copy(Piece other) {
 			

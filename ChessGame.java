@@ -73,7 +73,7 @@ public class ChessGame {
 		System.out.println("Click out of bounds");
 		selectMode = true;
 		targetMode = false;
-		selectedPiece.moveset.clear();
+		selectedPiece.clearMoveset();
 	}
 	
 	void selectPiece(Position selectionPosition) {
@@ -121,7 +121,7 @@ public class ChessGame {
 		if (target.isEqual(selectedPiece.getPosition())) {
 			selectMode = true;
 			targetMode = false;
-			selectedPiece.moveset.clear();
+			selectedPiece.clearMoveset();
 			System.out.println("Cancel selection");
 			return;
 		}
@@ -151,7 +151,7 @@ public class ChessGame {
 		isWhiteTurn = !isWhiteTurn;
 		selectMode = true;
 		targetMode = false;
-		selectedPiece.moveset.clear();
+		selectedPiece.clearMoveset();
 		player.checkState = false;
 		selectedPiece.addOneToMoveCount();
 		
@@ -196,8 +196,8 @@ public class ChessGame {
 				continue;
 			
 			tempPiece.constructMoveset(this);
-			boolean attacksKing = king.isInsideMoveset(tempPiece.moveset);
-			tempPiece.moveset.clear(); // nettoyage dans tous les cas, avant de sortir
+			boolean attacksKing = king.isInsideMoveset(tempPiece.getMoveset());
+			tempPiece.clearMoveset(); // nettoyage dans tous les cas, avant de sortir
 			
 			if (attacksKing)
 				return true;

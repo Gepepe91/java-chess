@@ -15,9 +15,9 @@ public class King extends Piece {
     
     @Override
     void constructMoveset(ChessGame game) {
-        moveset.clear();
+        clearMoveset();
 
-        Position forward = new Position(getLine() + getDirection(), getLine());
+        Position forward = new Position(getLine() + getDirection(), getColumn());
         Position forwardLeft = new Position(getLine() + getDirection(), getColumn() + getDirection());
         Position forwardRight = new Position(getLine() + getDirection(), getColumn()- getDirection());
         Position left = new Position(getLine(), getColumn() + getDirection());
@@ -27,28 +27,28 @@ public class King extends Piece {
         Position backward = new Position(getLine() - getDirection(), getColumn());
 
         if (forward.isInside(game.gameGrid))
-            moveset.add(forward);
+            addToMoveset(forward);
         
         if (forwardLeft.isInside(game.gameGrid))
-            moveset.add(forwardLeft);
+            addToMoveset(forwardLeft);
         
         if (forwardRight.isInside(game.gameGrid))
-            moveset.add(forwardRight);
+            addToMoveset(forwardRight);
         
         if (left.isInside(game.gameGrid))
-        	moveset.add(left);
+        	addToMoveset(left);
         
         if (right.isInside(game.gameGrid))
-        	moveset.add(right);
+        	addToMoveset(right);
         
         if (backwardLeft.isInside(game.gameGrid))
-        	moveset.add(backwardLeft);
+        	addToMoveset(backwardLeft);
         
         if (backwardRight.isInside(game.gameGrid))
-        	moveset.add(backwardRight);
+        	addToMoveset(backwardRight);
         
         if (backward.isInside(game.gameGrid))
-        	moveset.add(backward);
+        	addToMoveset(backward);
         
         //displayArrayListPosition(moveset);
         

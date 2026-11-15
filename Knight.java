@@ -15,7 +15,7 @@ public class Knight extends Piece {
     
     @Override
     void constructMoveset(ChessGame game) {
-        moveset.clear();
+        clearMoveset();
         
         //System.out.println("Construct knight moveset");
 

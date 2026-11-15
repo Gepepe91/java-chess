@@ -15,7 +15,7 @@ public class Pawn extends Piece {
     
     @Override
     void constructMoveset(ChessGame game) {
-        moveset.clear();
+        clearMoveset();
 
         Position doubleForward = new Position(getLine() + 2*getDirection() , getColumn());
         Position forward = new Position(getLine() + getDirection(), getColumn());
@@ -23,16 +23,16 @@ public class Pawn extends Piece {
         Position forwardRight = new Position(getLine() + getDirection(), getColumn() - getDirection());
         
         if (doubleForward.isInside(game.gameGrid) && !game.isOccupied(doubleForward) && getMoveCount() == 0)
-        	moveset.add(doubleForward);
+        	addToMoveset(doubleForward);
 
         if (forward.isInside(game.gameGrid) && !game.isOccupied(forward))
-            moveset.add(forward);
+            addToMoveset(forward);
         
         if (forwardLeft.isInside(game.gameGrid) && game.isOccupied(forwardLeft))
-            moveset.add(forwardLeft);
+            addToMoveset(forwardLeft);
         
         if (forwardRight.isInside(game.gameGrid) && game.isOccupied(forwardRight))
-            moveset.add(forwardRight);
+            addToMoveset(forwardRight);
         
         //displayArrayListPosition(moveset);
     }

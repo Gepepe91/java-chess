@@ -24,7 +24,7 @@ public class Bishop extends Piece {
 		 * Regroup all allowed positions in moveset
 		 * */
 		
-		moveset.clear();
+		clearMoveset();
 
 		Grid grid = game.gameGrid; // only a shortcut
 

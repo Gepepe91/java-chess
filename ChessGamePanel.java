@@ -146,7 +146,7 @@ public class ChessGamePanel extends JPanel {
 		Color movesetColor = Color.red;
 		g.setColor(movesetColor);
 		if (chessGame.selectedPiece != null) {
-			ArrayList<Position> moveset = chessGame.selectedPiece.moveset;
+			ArrayList<Position> moveset = chessGame.selectedPiece.getMoveset();
 			for (int index=0 ; index < moveset.size(); index++) {
 				int x = moveset.get(index).column * cellSize + borderSize;
 				int y = moveset.get(index).line * cellSize + borderSize;
