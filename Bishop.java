@@ -6,7 +6,7 @@ public class Bishop extends Piece {
 	
 	Bishop(int color){
 		position = new Position(0,0);
-		this.color = color;
+		setColor(color);
 		setType("bishop");
 	}
 	

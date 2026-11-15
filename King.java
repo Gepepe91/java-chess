@@ -4,7 +4,7 @@ public class King extends Piece {
 	
 	King(int color){
 		position = new Position(0,0);
-		this.color = color;
+		setColor(color);
 		setType("king");
 	}
 	

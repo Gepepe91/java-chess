@@ -12,9 +12,17 @@ public class Piece {
 		
 		boolean isAlive;
 
-		protected int color;
+		private int color;
 		
 		int moveCount;
+		
+		public void setColor(int color) {
+			this.color = color;
+		}
+		
+		public int getColor() {
+			return color;
+		}
 		
 		Piece() {
 			position = new Position(0,0);

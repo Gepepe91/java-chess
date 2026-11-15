@@ -6,7 +6,7 @@ public class Rook extends Piece {
 
 	Rook(int color){
 		position = new Position(0,0);
-		this.color = color;
+		setColor(color);
 		setType("rook");
 	}
 

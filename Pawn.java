@@ -4,7 +4,7 @@ public class Pawn extends Piece {
 	
 	Pawn(int color){
 		position = new Position();
-		this.color = color;
+		setColor(color);
 		setType("pawn");
 	}
 	
@@ -40,10 +40,10 @@ public class Pawn extends Piece {
     @Override
     boolean shouldTurnIntoQueen() {
     	
-    	if (color == 0 && position.line == 0)
+    	if (getColor() == 0 && position.line == 0)
     		return true;
     	
-    	if (color == 1 && position.line == 7)
+    	if (getColor() == 1 && position.line == 7)
     		return true;
     	
     	return false;

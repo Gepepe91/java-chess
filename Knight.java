@@ -4,7 +4,7 @@ public class Knight extends Piece {
 	
 	Knight(int color){
 		position = new Position(0,0);
-		this.color = color;
+		setColor(color);
 		setType("knight");
 	}
 	

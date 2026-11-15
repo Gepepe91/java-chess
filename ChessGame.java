@@ -84,9 +84,9 @@ public class ChessGame {
 		if (clicked == null)
 			return;
 		
-		if (clicked.color == 0 && !isWhiteTurn)
+		if (clicked.getColor() == 0 && !isWhiteTurn)
 			return;
-		if (clicked.color == 1 && isWhiteTurn)
+		if (clicked.getColor() == 1 && isWhiteTurn)
 			return;
 		
 		selectedPiece = clicked; // affectation seulement une fois le clic validé
@@ -157,7 +157,7 @@ public class ChessGame {
 		
 		// 8. promotion (voir remarque sur Player.promote plus bas)
 		if (selectedPiece.shouldTurnIntoQueen()) {
-			Player owner = (selectedPiece.color == 0) ? whitePlayer : blackPlayer;
+			Player owner = (selectedPiece.getColor() == 0) ? whitePlayer : blackPlayer;
 			Piece queen = owner.promote(selectedPiece);
 			selectedPiece = queen;
 		}
@@ -215,7 +215,7 @@ public class ChessGame {
 	
 	Player getPlayerOfAPiece(Piece piece) {
 		// CHANGEMENT : suppression du "else;" parasite
-		if (piece.color == 0)
+		if (piece.getColor() == 0)
 			return whitePlayer;
 		return blackPlayer;
 	}

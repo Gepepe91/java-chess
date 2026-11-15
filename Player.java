@@ -261,7 +261,7 @@ public class Player {
 	}
 	
 	Piece promote(Piece pawn) {
-	    Queen newQueen = new Queen(pawn.position , pawn.color);
+	    Queen newQueen = new Queen(pawn.position , pawn.getColor());
 	    pawns.set(pawns.indexOf(pawn), newQueen);
 	    pawns.remove(pawn);
 	    return newQueen;
