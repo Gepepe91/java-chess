@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Rook extends Piece {
 
 	Rook(int color){
-		position = new Position(0,0);
+		setPosition(new Position(0,0));
 		setColor(color);
 		setType("rook");
 	}
@@ -51,19 +51,19 @@ public class Rook extends Piece {
 	    for (int line = 0; line < grid.nbLines; line++) {
 	        for (int column = 0; column < grid.nbColumns; column++) {
 
-	            boolean sameLine = (position.line == line && position.column != column);
-	            boolean sameColumn = (position.line != line && position.column == column);
+	            boolean sameLine = (getLine() == line && getColumn() != column);
+	            boolean sameColumn = (getLine() != line && getColumn() == column);
 
 	            if (!sameLine && !sameColumn)
 	                continue; // hors des axes de la tour
 
-	            if (position.line < line)
+	            if (getLine() < line)
 	                movementAxis.get(0).add(new Position(line, column));   // vers le bas
-	            else if (position.line > line)
+	            else if (getLine() > line)
 	                movementAxis.get(1).add(new Position(line, column));   // vers le haut
-	            else if (position.column < column)
+	            else if (getColumn() < column)
 	                movementAxis.get(2).add(new Position(line, column));   // vers la droite
-	            else if (position.column > column)
+	            else if (getColumn() > column)
 	                movementAxis.get(3).add(new Position(line, column));   // vers la gauche
 	        }
 	    }

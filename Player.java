@@ -252,8 +252,8 @@ public class Player {
 	Piece getPieceAt(Position cell) {
 	    for (Piece piece : getPieces()) {
 	        if (piece.getIsAlive()
-	                && piece.position.line == cell.line
-	                && piece.position.column == cell.column) {
+	                && piece.getLine() == cell.line
+	                && piece.getColumn() == cell.column) {
 	            return piece;
 	        }
 	    }
@@ -261,7 +261,7 @@ public class Player {
 	}
 	
 	Piece promote(Piece pawn) {
-	    Queen newQueen = new Queen(pawn.position , pawn.getColor());
+	    Queen newQueen = new Queen(pawn.getPosition() , pawn.getColor());
 	    pawns.set(pawns.indexOf(pawn), newQueen);
 	    pawns.remove(pawn);
 	    return newQueen;

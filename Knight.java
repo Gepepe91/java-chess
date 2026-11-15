@@ -3,7 +3,7 @@ package chess;
 public class Knight extends Piece {
 	
 	Knight(int color){
-		position = new Position(0,0);
+		setPosition(new Position(0,0));
 		setColor(color);
 		setType("knight");
 	}
@@ -19,14 +19,14 @@ public class Knight extends Piece {
         
         //System.out.println("Construct knight moveset");
 
-        Position upLeft = new Position(position.line + 2*getDirection(), position.column - getDirection());
-        Position upRight = new Position(position.line + 2*getDirection(), position.column + getDirection());
-        Position rightUp = new Position(position.line - getDirection(), position.column - 2*getDirection());
-        Position rightDown = new Position(position.line + getDirection(), position.column - 2*getDirection());
-        Position leftUp = new Position(position.line - getDirection(), position.column + 2*getDirection());
-        Position leftDown = new Position(position.line + getDirection(), position.column + 2*getDirection());
-        Position downLeft = new Position(position.line - 2*getDirection(), position.column - getDirection());
-        Position downRight = new Position(position.line - 2*getDirection(), position.column + getDirection());
+        Position upLeft = new Position(getLine() + 2*getDirection(), getColumn() - getDirection());
+        Position upRight = new Position(getLine() + 2*getDirection(), getColumn() + getDirection());
+        Position rightUp = new Position(getLine() - getDirection(), getColumn() - 2*getDirection());
+        Position rightDown = new Position(getLine() + getDirection(), getColumn() - 2*getDirection());
+        Position leftUp = new Position(getLine() - getDirection(), getColumn() + 2*getDirection());
+        Position leftDown = new Position(getLine() + getDirection(), getColumn() + 2*getDirection());
+        Position downLeft = new Position(getLine() - 2*getDirection(), getColumn() - getDirection());
+        Position downRight = new Position(getLine() - 2*getDirection(), getColumn() + getDirection());
         
         Grid grid = game.gameGrid;
         

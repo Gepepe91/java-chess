@@ -205,8 +205,8 @@ public class ChessGamePanel extends JPanel {
 		if (img == null)
 			return;
 
-		int x = piece.position.column * cellSize + borderSize; //defines the sizes of the images
-		int y = piece.position.line * cellSize + borderSize;
+		int x = piece.getColumn() * cellSize + borderSize; //defines the sizes of the images
+		int y = piece.getLine() * cellSize + borderSize;
 		g.drawImage(img, x, y, cellSize - 5, cellSize - 5, this); // actually draw the images
 	}
 

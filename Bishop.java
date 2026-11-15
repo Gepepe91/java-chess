@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Bishop extends Piece {
 	
 	Bishop(int color){
-		position = new Position(0,0);
+		setPosition(new Position(0,0));
 		setColor(color);
 		setType("bishop");
 	}
@@ -52,8 +52,8 @@ public class Bishop extends Piece {
 	    for (int line = 0; line < grid.nbLines; line++) {
 	        for (int column = 0; column < grid.nbColumns; column++) {
 
-	            int lineDiff = line - position.line;
-	            int columnDiff = column - position.column;
+	            int lineDiff = line - getLine();
+	            int columnDiff = column - getColumn();
 
 	            if (Math.abs(lineDiff) != Math.abs(columnDiff))
 	                continue; // hors des diagonales du fou

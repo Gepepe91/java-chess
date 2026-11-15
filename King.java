@@ -3,7 +3,7 @@ package chess;
 public class King extends Piece {
 	
 	King(int color){
-		position = new Position(0,0);
+		setPosition(new Position(0,0));
 		setColor(color);
 		setType("king");
 	}
@@ -17,14 +17,14 @@ public class King extends Piece {
     void constructMoveset(ChessGame game) {
         moveset.clear();
 
-        Position forward = new Position(position.line + getDirection(), position.column);
-        Position forwardLeft = new Position(position.line + getDirection(), position.column + getDirection());
-        Position forwardRight = new Position(position.line + getDirection(), position.column - getDirection());
-        Position left = new Position(position.line, position.column + getDirection());
-        Position right = new Position(position.line, position.column - getDirection());
-        Position backwardLeft = new Position(position.line - getDirection(), position.column + getDirection());
-        Position backwardRight = new Position(position.line - getDirection(), position.column - getDirection());
-        Position backward = new Position(position.line - getDirection(), position.column);
+        Position forward = new Position(getLine() + getDirection(), getLine());
+        Position forwardLeft = new Position(getLine() + getDirection(), getColumn() + getDirection());
+        Position forwardRight = new Position(getLine() + getDirection(), getColumn()- getDirection());
+        Position left = new Position(getLine(), getColumn() + getDirection());
+        Position right = new Position(getLine(), getColumn() - getDirection());
+        Position backwardLeft = new Position(getLine() - getDirection(), getColumn() + getDirection());
+        Position backwardRight = new Position(getLine() - getDirection(), getColumn() - getDirection());
+        Position backward = new Position(getLine() - getDirection(), getColumn());
 
         if (forward.isInside(game.gameGrid))
             moveset.add(forward);

@@ -118,7 +118,7 @@ public class ChessGame {
 		targetedPiece = getPieceAt(target);
 		
 		// 2. annulation de la sélection
-		if (target.isEqual(selectedPiece.position)) {
+		if (target.isEqual(selectedPiece.getPosition())) {
 			selectMode = true;
 			targetMode = false;
 			selectedPiece.moveset.clear();
@@ -221,7 +221,7 @@ public class ChessGame {
 	}
 	
 	boolean targetResultsInCheckState(Player player, Position targetPosition) {
-		Position previousPosition = selectedPiece.position;
+		Position previousPosition = selectedPiece.getPosition();
 		
 		// CHANGEMENT : plus de copie de pièce. La simulation ne modifie qu'une donnée
 		// de la pièce capturée : isAlive. On la met à false, puis on la remet à true.
