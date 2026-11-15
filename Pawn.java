@@ -5,12 +5,12 @@ public class Pawn extends Piece {
 	Pawn(int color){
 		position = new Position();
 		this.color = color;
-		type = "pawn";
+		setType("pawn");
 	}
 	
     Pawn(Position position, int color) {
     	super(position, color);
-    	type = "pawn";
+    	setType("pawn");
     }
     
     @Override

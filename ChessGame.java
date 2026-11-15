@@ -1,7 +1,5 @@
 package chess;
 
-import java.util.ArrayList;
-
 public class ChessGame {
 	
 	Grid gameGrid;
@@ -18,8 +16,6 @@ public class ChessGame {
 	boolean targetMode;
 	
 	boolean isWhiteTurn;
-	
-	// Need to create virtual board just to see if a check is solved
 	
 	
 	
@@ -44,18 +40,10 @@ public class ChessGame {
 	void initGame() {
 		//Place all the pieces of the board
 		
-		whitePlayer.initPlayer("debug");
-		blackPlayer.initPlayer("debug");
+		whitePlayer.initPlayer();
+		blackPlayer.initPlayer();
 		
 	}
-	
-	/*
-	void testMouse(Position test) {
-	    if (test == null)
-	    	return;
-	    this.blackPlayer.pawn1.moveTo(test);
-	}
-	*/
 	
 	void displayMode() {
 		if (selectMode)
@@ -114,7 +102,7 @@ public class ChessGame {
 		 * 2. cancel turn ?
 		 * 3. piece can move to target? (maybe should include isInside)
 		 * 4. Would the move imply a check state?
-		 * 5. In the case that the player is in check case, can the target solve the situation?
+		 * 5. empty
 		 * 6. Is the move killing an opponent's piece?
 		 * 7. Moving to the target, turn is updated and check state set to false
 		 * 8. Should the piece turns into a queen ?

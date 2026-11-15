@@ -8,16 +8,16 @@ public class Piece {
 		
 		ArrayList<Position> moveset;
 		
-		String type; // should be private
+		private String type; // should be private
 		
 		boolean isAlive;
 
-		int color;
+		protected int color;
 		
 		int moveCount;
 		
 		Piece() {
-			this.position = new Position(0,0);
+			position = new Position(0,0);
 			moveset = new ArrayList<Position>();
 			isAlive = true;
 			color = 0;
@@ -26,7 +26,7 @@ public class Piece {
 		}
 		
 		Piece(int color) {
-			this.position = new Position(0,0);
+			position = new Position(0,0);
 			moveset = new ArrayList<Position>();
 			isAlive = true;
 			this.color = color;
@@ -41,9 +41,13 @@ public class Piece {
 			moveCount = 0;
 		}
 		
-		String getType() {
+		public String getType() {
 			return type;
 		}   // "pawn", "rook", ...
+		
+		public void setType(String other) {
+			type = other;
+		}
 		
 		Position getPosition() {
 			return position;
