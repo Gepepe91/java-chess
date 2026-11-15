@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Piece {
 		
-		Position position;
+		private Position position;
 		
 		ArrayList<Position> moveset;
 		
@@ -15,6 +15,22 @@ public class Piece {
 		private int color;
 		
 		private int moveCount;
+		
+		public void setPosition(Position position) {
+			this.position = position;
+		}
+		
+		public Position getPosition() {
+			return position;
+		}
+		
+		public int getLine() {
+			return position.line;
+		}
+		
+		public int getColumn() {
+			return position.column;
+		}
 		
 		public void setIsAlive(boolean isAlive) {
 			this.isAlive = isAlive;
@@ -71,10 +87,6 @@ public class Piece {
 		
 		public void setType(String other) {
 			type = other;
-		}
-		
-		Position getPosition() {
-			return position;
 		}
 		
 		void copy(Piece other) {
