@@ -22,7 +22,7 @@ public class Pawn extends Piece {
         Position forwardLeft = new Position(position.line + getDirection(), position.column + getDirection());
         Position forwardRight = new Position(position.line + getDirection(), position.column - getDirection());
         
-        if (doubleForward.isInside(game.gameGrid) && !game.isOccupied(doubleForward) && moveCount == 0)
+        if (doubleForward.isInside(game.gameGrid) && !game.isOccupied(doubleForward) && getMoveCount() == 0)
         	moveset.add(doubleForward);
 
         if (forward.isInside(game.gameGrid) && !game.isOccupied(forward))

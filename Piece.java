@@ -14,7 +14,7 @@ public class Piece {
 
 		private int color;
 		
-		int moveCount;
+		private int moveCount;
 		
 		public void setColor(int color) {
 			this.color = color;
@@ -22,6 +22,14 @@ public class Piece {
 		
 		public int getColor() {
 			return color;
+		}
+		
+		public void addOneToMoveCount() {
+			moveCount++;
+		}
+		
+		public int getMoveCount() {
+			return moveCount;
 		}
 		
 		Piece() {

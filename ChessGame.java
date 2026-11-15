@@ -153,7 +153,7 @@ public class ChessGame {
 		targetMode = false;
 		selectedPiece.moveset.clear();
 		player.checkState = false;
-		selectedPiece.moveCount++;
+		selectedPiece.addOneToMoveCount();
 		
 		// 8. promotion (voir remarque sur Player.promote plus bas)
 		if (selectedPiece.shouldTurnIntoQueen()) {
