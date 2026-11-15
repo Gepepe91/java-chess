@@ -192,7 +192,7 @@ public class ChessGame {
 			
 			// CHANGEMENT : une pièce morte (capturée, réellement ou en simulation)
 			// ne menace plus rien. C'est ce filtre qui rend la simulation de capture utile.
-			if (!tempPiece.isAlive)
+			if (!tempPiece.getIsAlive())
 				continue;
 			
 			tempPiece.constructMoveset(this);
@@ -229,7 +229,7 @@ public class ChessGame {
 		// valeur de restauration.)
 		Piece capturedPiece = getPieceAt(targetPosition);
 		if (capturedPiece != null)
-			capturedPiece.isAlive = false; // direct, pas kill() : pas de message parasite
+			capturedPiece.setIsAlive(false); // direct, pas kill() : pas de message parasite
 		
 		selectedPiece.moveTo(targetPosition);
 		
@@ -238,7 +238,7 @@ public class ChessGame {
 		// CHANGEMENT : restauration unique, après le test, au lieu d'une par branche.
 		selectedPiece.moveTo(previousPosition);
 		if (capturedPiece != null)
-			capturedPiece.isAlive = true;
+			capturedPiece.setIsAlive(true);
 		
 		return stillInCheck; // true = le coup laisse/met mon roi en échec
 	}
@@ -252,7 +252,7 @@ public class ChessGame {
 	
 	void kill(Piece target) {
 		if (target != null) {
-			target.isAlive = false;
+			target.setIsAlive(false);
 			System.out.println("Kill!");
 		}
 	}

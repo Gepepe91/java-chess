@@ -192,7 +192,7 @@ public class ChessGamePanel extends JPanel {
 
 	
 	void drawPiece(Graphics g, Piece piece, String colorName, int cellSize) {
-		if (piece == null || !piece.isAlive) // do nothing if the cell is empty
+		if (piece == null || !piece.getIsAlive()) // do nothing if the cell is empty
 			return;
 
 		String type = piece.getType();   // "pawn", "rook", ... (null tant que la classe n'est pas faite)

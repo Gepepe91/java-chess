@@ -10,11 +10,19 @@ public class Piece {
 		
 		private String type; // should be private
 		
-		boolean isAlive;
+		private boolean isAlive;
 
 		private int color;
 		
 		private int moveCount;
+		
+		public void setIsAlive(boolean isAlive) {
+			this.isAlive = isAlive;
+		}
+		
+		public boolean getIsAlive() {
+			return isAlive;
+		}
 		
 		public void setColor(int color) {
 			this.color = color;
