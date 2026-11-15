@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.ArrayList;
+
 public class ChessGame {
 	
 	Grid gameGrid;
@@ -16,6 +18,10 @@ public class ChessGame {
 	boolean targetMode;
 	
 	boolean isWhiteTurn;
+	
+	// Need to create virtual board just to see if a check is solved
+	
+	
 	
 	ChessGame(){
 		gameGrid = new Grid(8,8);
@@ -38,8 +44,8 @@ public class ChessGame {
 	void initGame() {
 		//Place all the pieces of the board
 		
-		whitePlayer.initPlayer();
-		blackPlayer.initPlayer();
+		whitePlayer.initPlayer("debug");
+		blackPlayer.initPlayer("debug");
 		
 	}
 	
@@ -100,10 +106,12 @@ public class ChessGame {
 	}
 	
 	void targetPosition(Position target) {
+		Player player = getPlayerOfAPiece(selectedPiece);
+		Player opponent = getOpponent(player);
+		targetedPiece = getPieceAt(target);
+		
 		if (!target.isInside(gameGrid))
 			return;
-
-		targetedPiece = getPieceAt(target);
 
 		if (target.isEqual(selectedPiece.position)) {
 			selectMode = true;
@@ -115,6 +123,19 @@ public class ChessGame {
 
 		if (!selectedPiece.canMoveTo(target))
 			return;
+		
+		//Need to verify if the player is in check state
+		if (player.checkState) {
+			// Need to play a virtual turn and verify if this virtual board is still a check
+			//Before that, let's try to store the previous position, play, verify and if it is still a check, cancel the move
+			Position previousPosition = selectedPiece.position;
+			selectedPiece.moveTo(target);
+			if (isCheck(player)) {
+				selectedPiece.moveTo(previousPosition);
+				System.out.println("Cancel turn because player did not solve the check state");
+				return;
+			}
+		}
 		
 		//System.out.println("let's go");
 		if (targetedPiece != null) {
@@ -128,6 +149,7 @@ public class ChessGame {
 		selectMode = true;
 		targetMode = false;
 		selectedPiece.moveset.clear();
+		player.checkState = false;
 
 		selectedPiece.moveCount++;
 		
@@ -136,7 +158,11 @@ public class ChessGame {
 		    Piece queen = owner.promote(selectedPiece);
 		    selectedPiece = queen;
 			System.out.println("Slayyyyy 💅");
-			}
+		}
+		
+		if (isCheck(opponent))
+			opponent.checkState = true;
+			
 
 	}
 	
@@ -150,6 +176,42 @@ public class ChessGame {
 
 	boolean isOccupied(Position p) {
 	    return getPieceAt(p) != null;
+	}
+	
+	boolean isCheck(Player player) {
+		// Work in progress
+		
+		//boolean test = false;
+		Player opponent = getOpponent(player);
+		Piece king = player.king;
+		ArrayList<Position> moveset;
+		
+		ArrayList<Piece> opponentPieces = opponent.allPieces;
+		for (int index = 0 ; index < opponentPieces.size(); index++) {
+			opponentPieces.get(index).constructMoveset(this);
+			moveset = opponentPieces.get(index).moveset;
+			if (king.isInsideMoveset(moveset)) {
+				System.out.println("Check");
+			}
+				return true;
+			
+		}
+		
+		return false;
+	}
+	
+	Player getOpponent(Player player) {
+		if (player.id == "white")
+			return blackPlayer;
+		else
+			return whitePlayer;
+	}
+	
+	Player getPlayerOfAPiece(Piece piece) {
+		if (piece.color == 0)
+			return whitePlayer;
+		else;
+		return blackPlayer;
 	}
 	
 	

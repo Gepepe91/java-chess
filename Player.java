@@ -20,6 +20,10 @@ public class Player {
 	
 	Piece king;
 	
+	ArrayList<Piece> allPieces;
+	
+	boolean checkState = false; // true is the king is directly menaced
+	
 	Player(String id){
 		this.id = id;
 		
@@ -60,6 +64,29 @@ public class Player {
 		queen = new Queen(color);
 		
 		king = new King(color);
+		
+		allPieces = new ArrayList<Piece>();
+		
+		allPieces.add(pawn1);
+		allPieces.add(pawn2);
+		allPieces.add(pawn3);
+		allPieces.add(pawn4);
+		allPieces.add(pawn5);
+		allPieces.add(pawn6);
+		allPieces.add(pawn7);
+		allPieces.add(pawn8);
+		
+		allPieces.add(leftBishop);
+		allPieces.add(rightBishop);
+		
+		allPieces.add(leftKnight);
+		allPieces.add(rightBishop);
+		
+		allPieces.add(leftRook);
+		allPieces.add(rightRook);
+		
+		allPieces.add(queen);
+		allPieces.add(king);
 	}
 	
 	
@@ -72,10 +99,77 @@ public class Player {
 			System.out.println("Player is neither white or black");
 	}
 	
-	void initWhitePlayer() {
+	void initPlayer(String debug) {
+		if (debug == "debug") {
+			if (id == "white")
+				initWhitePlayerDebug();
+			else if (id == "black")
+				initBlackPlayerDebug();
+		}
+	}
+	
+	void initWhitePlayerDebug() {
+		
+		pawn1.moveTo(new Position(6,0));
+		pawn2.moveTo(new Position(6,1));
+		pawn3.moveTo(new Position(6,2));
+		pawn4.moveTo(new Position(6,3));
+		pawn5.moveTo(new Position(6,4));
+		pawn6.moveTo(new Position(6,5));
+		pawn7.moveTo(new Position(6,6));
+		pawn8.moveTo(new Position(6,7));
+		
+		for (int index=0 ; index < 8 ; index++)
+			pawns.get(index).moveTo(new Position(6 , index));
+		
+		
+		
+		leftRook.moveTo(new Position(7,0));
+		rightRook.moveTo(new Position(7,7));
+		
+		leftKnight.moveTo(new Position(7,1));
+		rightKnight.moveTo(new Position(7,6));
+		
+		leftBishop.moveTo(new Position(7,2));
+		rightBishop.moveTo(new Position(7,5));
+		
+		queen.moveTo(new Position(7,3));
+		
+		king.moveTo(new Position(5,4));
+	}
+	
+	void initBlackPlayerDebug() {
 		
 		pawn1.moveTo(new Position(1,7));
-		//pawn1.moveTo(new Position(6,0));
+		pawn2.moveTo(new Position(1,6));
+		pawn3.moveTo(new Position(1,5));
+		pawn4.moveTo(new Position(1,4));
+		pawn5.moveTo(new Position(1,3));
+		pawn6.moveTo(new Position(1,2));
+		pawn7.moveTo(new Position(1,1));
+		pawn8.moveTo(new Position(1,0));
+		
+		for (int index=0 ; index < 8 ; index++)
+			pawns.get(index).moveTo(new Position(1 , index));
+		
+		leftRook.moveTo(new Position(3,3));
+		rightRook.moveTo(new Position(0,0));
+		
+		leftKnight.moveTo(new Position(0,6));
+		rightKnight.moveTo(new Position(0,1));
+		
+		leftBishop.moveTo(new Position(0,5));
+		rightBishop.moveTo(new Position(0,2));
+		
+		queen.moveTo(new Position(0,3));
+		
+		king.moveTo(new Position(0,4));
+		
+	}
+	
+	void initWhitePlayer() {
+		
+		pawn1.moveTo(new Position(6,0));
 		pawn2.moveTo(new Position(6,1));
 		pawn3.moveTo(new Position(6,2));
 		pawn4.moveTo(new Position(6,3));
@@ -105,8 +199,7 @@ public class Player {
 	
 	void initBlackPlayer() {
 		
-		pawn1.moveTo(new Position(6,0));
-		//pawn1.moveTo(new Position(1,7));
+		pawn1.moveTo(new Position(1,7));
 		pawn2.moveTo(new Position(1,6));
 		pawn3.moveTo(new Position(1,5));
 		pawn4.moveTo(new Position(1,4));
@@ -173,5 +266,8 @@ public class Player {
 	    pawns.remove(pawn);
 	    return newQueen;
 	}
-
+	
+	
+	
+	
 }
