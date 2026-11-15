@@ -252,8 +252,8 @@ public class Player {
 	Piece getPieceAt(Position cell) {
 	    for (Piece piece : getPieces()) {
 	        if (piece.getIsAlive()
-	                && piece.getLine() == cell.line
-	                && piece.getColumn() == cell.column) {
+	                && piece.getLine() == cell.getLine()
+	                && piece.getColumn() == cell.getColumn()) {
 	            return piece;
 	        }
 	    }

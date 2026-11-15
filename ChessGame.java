@@ -147,7 +147,7 @@ public class ChessGame {
 		// 7. déplacement réel
 		// CHANGEMENT : on copie la position au lieu de garder l'objet du clic,
 		// pour éviter qu'un setPosition() côté interface ne déplace la pièce.
-		selectedPiece.moveTo(new Position(target.line, target.column));
+		selectedPiece.moveTo(new Position(target.getLine(), target.getColumn()));
 		isWhiteTurn = !isWhiteTurn;
 		selectMode = true;
 		targetMode = false;

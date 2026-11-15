@@ -9,18 +9,6 @@ public class Piece {
 		
 		private ArrayList<Position> moveset; // too much of a headache to make it private
 		
-		public void clearMoveset() {
-			moveset.clear();
-		}
-		
-		public void addToMoveset(Position other) {
-			moveset.add(other);
-		}
-		
-		public ArrayList<Position> getMoveset(){
-			return moveset;
-		}
-		
 		private String type; // should be private
 		
 		private boolean isAlive;
@@ -48,14 +36,14 @@ public class Piece {
 		}
 
 		Piece(Position position, int color) {
-			this.position = new Position(position.line, position.column);
+			this.position = new Position(position.getLine(), position.getColumn());
 			moveset = new ArrayList<Position>();
 			isAlive = true;
 			this.color = color;
 			moveCount = 0;
 		}
 		
-		// Setters and getters
+		// Setters, getters and minimal methods
 		
 		public void setPosition(Position position) {
 			this.position = position;
@@ -66,11 +54,11 @@ public class Piece {
 		}
 		
 		public int getLine() {
-			return position.line;
+			return position.getLine();
 		}
 		
 		public int getColumn() {
-			return position.column;
+			return position.getColumn();
 		}
 		
 		public void setIsAlive(boolean isAlive) {
@@ -103,6 +91,18 @@ public class Piece {
 		
 		public void setType(String other) {
 			type = other;
+		}
+		
+		public void clearMoveset() {
+			moveset.clear();
+		}
+		
+		public void addToMoveset(Position other) {
+			moveset.add(other);
+		}
+		
+		public ArrayList<Position> getMoveset(){
+			return moveset;
 		}
 		
 		// Public methods
