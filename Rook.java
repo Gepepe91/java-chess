@@ -42,15 +42,11 @@ public class Rook extends Piece {
 	     * Specific for the rook
 	     * */
 
-	    System.out.println("Construct mouvementAxis");
-
 	    ArrayList<ArrayList<Position>> movementAxis = new ArrayList<ArrayList<Position>>();
 	    // Adding the 4 axis
 	    int nbOfAxis = 4;
 	    for (int index = 0; index < nbOfAxis; index++)
 	        movementAxis.add(new ArrayList<Position>());
-
-	    //System.out.println("Number of axis : " + movementAxis.size());
 
 	    for (int line = 0; line < grid.nbLines; line++) {
 	        for (int column = 0; column < grid.nbColumns; column++) {
