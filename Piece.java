@@ -49,16 +49,13 @@ public class Piece {
 			return position;
 		}
 		
-		Piece copy(Piece other) {
+		void copy(Piece other) {
 			
-			Piece copy = new Piece();
-			copy.position = other.position;
-			copy.moveset = other.moveset;
-			copy.type = other.type;
-			copy.isAlive = other.isAlive;
-			copy.moveCount = other.moveCount;
-			
-			return copy;
+			this.position = other.position;
+			this.moveset = other.moveset;
+			this.type = other.type;
+			this.isAlive = other.isAlive;
+			this.moveCount = other.moveCount;
 		}
 		
 		void moveTo(Position other){
