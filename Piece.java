@@ -49,6 +49,18 @@ public class Piece {
 			return position;
 		}
 		
+		Piece copy(Piece other) {
+			
+			Piece copy = new Piece();
+			copy.position = other.position;
+			copy.moveset = other.moveset;
+			copy.type = other.type;
+			copy.isAlive = other.isAlive;
+			copy.moveCount = other.moveCount;
+			
+			return copy;
+		}
+		
 		void moveTo(Position other){
 			this.position = other;
 		}
@@ -143,5 +155,19 @@ public class Piece {
 			//false for every piece except pawns
 			return false;
 		}
+		
+		boolean isInsideMoveset(ArrayList<Position> moveset) {
+			
+			for (int index = 0 ; index < moveset.size() ; index++) {
+				if (this.position.isEqual(moveset.get(index)))
+					return true;
+			}
+				
+			return false;
+		}
+		
+		
+		
+
 
 	}
