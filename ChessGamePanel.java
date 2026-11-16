@@ -153,6 +153,15 @@ public class ChessGamePanel extends JPanel {
 				g.drawRect(x, y, cellSize - 2, cellSize - 2);
 			}
 		}
+		
+		// 3.3 Highlight the selected piece
+		
+		Color selectionColor = Color.blue;
+		g.setColor(selectionColor);
+		int xSelection = chessGame.selectedPiece.getColumn() * cellSize + borderSize;
+		int ySelection = chessGame.selectedPiece.getLine() * cellSize + borderSize;
+		if (chessGame.targetMode)
+			g.drawRect(xSelection, ySelection, cellSize - 2 , cellSize - 2);
 
 		// 3. Le message
 		g.setColor(Color.RED);
