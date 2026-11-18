@@ -227,11 +227,6 @@ public class Piece {
 			return false;
 		}
 		
-		void die(Player player) {
-			this.setIsAlive(false);
-			player.allPieces.remove(this);
-		}
-		
 		
 		
 

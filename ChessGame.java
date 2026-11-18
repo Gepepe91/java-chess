@@ -59,6 +59,10 @@ public class ChessGame {
 	void newClick(Position click) {
 		//System.out.println("new click");
 		
+		// Each click update the allPieces of the players
+		updateAllPieces(whitePlayer);
+		updateAllPieces(blackPlayer);
+		
 		if (selectMode) {
 			selectPiece(click);
 		}
@@ -260,8 +264,7 @@ public class ChessGame {
 	
 	void kill(Piece target , Player opponent) {
 		if (target != null) {
-			//target.setIsAlive(false);
-			target.die(opponent);
+			target.setIsAlive(false);
 			System.out.println("Kill!");
 		}
 	}
@@ -304,6 +307,22 @@ public class ChessGame {
 		}
 		// No valid way to play saves the king : check mate! 
 		return true;
+	}
+	
+	void updateAllPieces(Player player) {
+
+	    for (Piece piece : player.allPieces) {
+	    	
+	    	//System.out.println(piece.getType() + " is " + piece.getIsAlive());
+
+	        if (piece.getIsAlive() && !player.allPieces.contains(piece))
+	            player.allPieces.add(piece);
+
+	        else if (!piece.getIsAlive() && player.allPieces.contains(piece))
+	            player.allPieces.remove(piece);
+
+	    }
+
 	}
 	
 	

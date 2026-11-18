@@ -109,34 +109,33 @@ public class Player {
 	}
 	
 	void initWhitePlayerDebug() {
-		
-		for (int index=0 ; index < allPieces.size() ; index++) {
-			allPieces.get(index).setIsAlive(false);
-			allPieces.remove(allPieces.get(index));
-		}
-		
-		king.setIsAlive(true);
-		allPieces.add(king);
-		queen.setIsAlive(true);
-		allPieces.add(queen);
+
+	    for (Piece piece : allPieces)
+	        piece.setIsAlive(false);
+
+	    allPieces.clear();
+
+	    king.setIsAlive(true);
+	    allPieces.add(king);
+
+	    queen.setIsAlive(true);
+	    allPieces.add(queen);
 
 	    king.moveTo(new Position(2,5));
 	    queen.moveTo(new Position(2,6));
-	    
-	    
 
 	}
 
 	void initBlackPlayerDebug() {
-		
-		for (int index=0 ; index < allPieces.size(); index++) {
-			allPieces.get(index).setIsAlive(false);
-			allPieces.remove(allPieces.get(index));
-		}
 
-		king.setIsAlive(true);
-		allPieces.add(king);
-		
+	    for (Piece piece : allPieces)
+	        piece.setIsAlive(false);
+
+	    allPieces.clear();
+
+	    king.setIsAlive(true);
+	    allPieces.add(king);
+
 	    king.moveTo(new Position(0,7));
 
 	}
