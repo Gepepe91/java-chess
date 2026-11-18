@@ -28,7 +28,7 @@ public class Player {
 		this.id = id;
 		
 		int color;
-		if (id == "white")
+		if (id.equals("white"))
 			color = 0;
 		else
 			color = 1;
