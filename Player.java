@@ -80,7 +80,7 @@ public class Player {
 		allPieces.add(rightBishop);
 		
 		allPieces.add(leftKnight);
-		allPieces.add(rightBishop);
+		allPieces.add(rightKnight);
 		
 		allPieces.add(leftRook);
 		allPieces.add(rightRook);
@@ -110,61 +110,35 @@ public class Player {
 	
 	void initWhitePlayerDebug() {
 		
-		pawn1.moveTo(new Position(6,0));
-		pawn2.moveTo(new Position(6,1));
-		pawn3.moveTo(new Position(6,2));
-		pawn4.moveTo(new Position(6,3));
-		pawn5.moveTo(new Position(6,4));
-		pawn6.moveTo(new Position(6,5));
-		pawn7.moveTo(new Position(6,6));
-		pawn8.moveTo(new Position(6,7));
+		for (int index=0 ; index < allPieces.size() ; index++) {
+			allPieces.get(index).setIsAlive(false);
+			allPieces.remove(allPieces.get(index));
+		}
 		
-		for (int index=0 ; index < 8 ; index++)
-			pawns.get(index).moveTo(new Position(6 , index));
-		
-		
-		
-		leftRook.moveTo(new Position(7,0));
-		rightRook.moveTo(new Position(7,7));
-		
-		leftKnight.moveTo(new Position(7,1));
-		rightKnight.moveTo(new Position(7,6));
-		
-		leftBishop.moveTo(new Position(7,2));
-		rightBishop.moveTo(new Position(7,5));
-		
-		queen.moveTo(new Position(7,3));
-		
-		king.moveTo(new Position(5,4));
+		king.setIsAlive(true);
+		allPieces.add(king);
+		queen.setIsAlive(true);
+		allPieces.add(queen);
+
+	    king.moveTo(new Position(2,5));
+	    queen.moveTo(new Position(2,6));
+	    
+	    
+
 	}
-	
+
 	void initBlackPlayerDebug() {
 		
-		pawn1.moveTo(new Position(1,7));
-		pawn2.moveTo(new Position(1,6));
-		pawn3.moveTo(new Position(1,5));
-		pawn4.moveTo(new Position(1,4));
-		pawn5.moveTo(new Position(1,3));
-		pawn6.moveTo(new Position(1,2));
-		pawn7.moveTo(new Position(1,1));
-		pawn8.moveTo(new Position(1,0));
+		for (int index=0 ; index < allPieces.size(); index++) {
+			allPieces.get(index).setIsAlive(false);
+			allPieces.remove(allPieces.get(index));
+		}
+
+		king.setIsAlive(true);
+		allPieces.add(king);
 		
-		for (int index=0 ; index < 8 ; index++)
-			pawns.get(index).moveTo(new Position(1 , index));
-		
-		leftRook.moveTo(new Position(3,3));
-		rightRook.moveTo(new Position(0,0));
-		
-		leftKnight.moveTo(new Position(0,6));
-		rightKnight.moveTo(new Position(0,1));
-		
-		leftBishop.moveTo(new Position(0,5));
-		rightBishop.moveTo(new Position(0,2));
-		
-		queen.moveTo(new Position(0,3));
-		
-		king.moveTo(new Position(0,4));
-		
+	    king.moveTo(new Position(0,7));
+
 	}
 	
 	void initWhitePlayer() {

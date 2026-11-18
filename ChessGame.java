@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.ArrayList;
+
 public class ChessGame {
 	
 	Grid gameGrid;
@@ -40,8 +42,8 @@ public class ChessGame {
 	void initGame() {
 		//Place all the pieces of the board
 		
-		whitePlayer.initPlayer();
-		blackPlayer.initPlayer();
+		whitePlayer.initPlayer("debug");
+		blackPlayer.initPlayer("debug");
 		
 	}
 	
@@ -107,6 +109,7 @@ public class ChessGame {
 		 * 7. Moving to the target, turn is updated and check state set to false
 		 * 8. Should the piece turns into a queen ?
 		 * 9. Did the move put the opponent in check state ?
+		 * 10. Did the move won the game?
 		 */
 		Player player = getPlayerOfAPiece(selectedPiece);
 		Player opponent = getOpponent(player);
@@ -142,7 +145,7 @@ public class ChessGame {
 		// 5. CHANGEMENT : ancienne étape 5 supprimée, elle refaisait le même test.
 		
 		// 6. capture réelle (définitive cette fois)
-		kill(targetedPiece);
+		kill(targetedPiece , opponent);
 		
 		// 7. déplacement réel
 		// CHANGEMENT : on copie la position au lieu de garder l'objet du clic,
@@ -166,8 +169,13 @@ public class ChessGame {
 		// Le flag reflète exactement ce que isCheck() vient de calculer,
 		// quelle que soit sa valeur précédente.
 		opponent.checkState = isCheck(opponent);
-		if (opponent.checkState)
+		if (opponent.checkState) {
 			System.out.println(opponent.id + " is now in check state");
+			// Now is it a check mate ?
+			if (isCheckMate(opponent))
+				System.out.println("CHECKMATE\n" + opponent.id + " has won!");
+		}
+		
 		
 	}
 	
@@ -250,11 +258,52 @@ public class ChessGame {
 			player.checkState = true;
 	}
 	
-	void kill(Piece target) {
+	void kill(Piece target , Player opponent) {
 		if (target != null) {
-			target.setIsAlive(false);
+			//target.setIsAlive(false);
+			target.die(opponent);
 			System.out.println("Kill!");
 		}
+	}
+	
+	boolean isCheckMate(Player player) {
+		/**
+		 * 1. See if the player is in check state
+		 * 2. See if the king's moveset is empty
+		 * 3. See if any movements from the allied pieces solve the check state
+		 */
+		
+		// First need to be in check state
+		// Tested right before in targetPosition
+		//if (!player.checkState)
+		//	return false;
+		
+		// actually useless : the king capacity to escape is tested in the next double loop
+		//if (! (player.king.getMoveset().isEmpty()) )
+		//	return false;
+		
+		// get the moveset for every allied piece
+		// inside this loop, new loop to test every target possible and see if it results in a check state
+		// Luckily, there is not that many pieces, combinatory explosion under control
+		Piece currentPiece;
+		ArrayList<Position> currentMoveset;
+		Position currentPosition;
+		
+		System.out.println("Check Mate test started");
+		
+		for (int indexPiece=0 ; indexPiece < player.allPieces.size() ; indexPiece++) {
+			currentPiece = player.allPieces.get(indexPiece);
+			currentMoveset = currentPiece.constructAndGetMoveset(this);
+			System.out.println("Test of " + currentPiece.getType());
+			
+			for (int indexTarget=0 ; indexTarget < currentMoveset.size() ; indexTarget++) {
+				//System.out.println("Test of " + currentPiece.getType());
+				if ( targetResultsInCheckState(player , currentMoveset.get(indexTarget)) )
+					return false;
+			}
+		}
+		// No valid way to play saves the king : check mate! 
+		return true;
 	}
 	
 	

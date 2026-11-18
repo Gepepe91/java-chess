@@ -105,6 +105,12 @@ public class Piece {
 			return moveset;
 		}
 		
+		public ArrayList<Position> constructAndGetMoveset(ChessGame game){
+			moveset.clear(); // better too safe than not enough
+			constructMoveset(game);
+			return moveset;
+		}
+		
 		// Public methods
 		
 		void copy(Piece other) {
@@ -191,7 +197,7 @@ public class Piece {
 		}
 		
 		void regroupInMoveset(ArrayList<ArrayList<Position>> temp) {
-			System.out.println("Construct moveset");
+			//System.out.println("Construct moveset");
 			for (int axis=0 ; axis < temp.size() ; axis++) {
 				for (int cellIndex=0 ; cellIndex < temp.get(axis).size() ; cellIndex++) {
 					moveset.add(temp.get(axis).get(cellIndex));
@@ -219,6 +225,11 @@ public class Piece {
 			}
 				
 			return false;
+		}
+		
+		void die(Player player) {
+			this.setIsAlive(false);
+			player.allPieces.remove(this);
 		}
 		
 		
