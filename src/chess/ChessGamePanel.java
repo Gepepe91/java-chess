@@ -17,8 +17,6 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import tetris.Block;
-
 public class ChessGamePanel extends JPanel {
 	
 	/*
@@ -226,7 +224,7 @@ public class ChessGamePanel extends JPanel {
 		for (String c : colors) {
 			for (String t : types) {
 				String fileName = t;
-				File file = new File("/Users/gabriel/Documents/Etudes/M3/JAVA/Perso/src/chess/media/" + c + "_" + fileName + ".png");
+				File file = new File("/Users/Gabriel/Documents/Etudes/M3/JAVA/Perso/Chess/src/chess/media/" + c + "_" + fileName + ".png");
 
 				if (!file.exists()) {
 					System.out.println("Image introuvable : " + file.getAbsolutePath());
