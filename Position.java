@@ -23,6 +23,10 @@ public class Position {
 		return column;
 	}
 	
+	public String toString() {
+		return "(" + line + "," + column + ")";
+	}
+	
 	void setPosition(int line, int column) {
 		this.line = line;
 		this.column = column;

@@ -255,6 +255,30 @@ public class ChessGame {
 		return stillInCheck; // true = le coup laisse/met mon roi en échec
 	}
 	
+	// Overcharged version that take the piece as argument
+	boolean targetResultsInCheckState(Piece piece , Player player, Position targetPosition) {
+		Position previousPosition = piece.getPosition();
+		
+		// CHANGEMENT : plus de copie de pièce. La simulation ne modifie qu'une donnée
+		// de la pièce capturée : isAlive. On la met à false, puis on la remet à true.
+		// (getPieceAt ne renvoie que des pièces vivantes, donc "true" est la bonne
+		// valeur de restauration.)
+		Piece capturedPiece = getPieceAt(targetPosition);
+		if (capturedPiece != null)
+			capturedPiece.setIsAlive(false); // direct, pas kill() : pas de message parasite
+		
+		piece.moveTo(targetPosition);
+		
+		boolean stillInCheck = isCheck(player);
+		
+		// CHANGEMENT : restauration unique, après le test, au lieu d'une par branche.
+		piece.moveTo(previousPosition);
+		if (capturedPiece != null)
+			capturedPiece.setIsAlive(true);
+		
+		return stillInCheck; // true = le coup laisse/met mon roi en échec
+	}
+	
 	void changeCheckState(Player player) {
 		if (player.checkState)
 			player.checkState = false;
@@ -301,7 +325,9 @@ public class ChessGame {
 			
 			for (int indexTarget=0 ; indexTarget < currentMoveset.size() ; indexTarget++) {
 				//System.out.println("Test of " + currentPiece.getType());
-				if ( targetResultsInCheckState(player , currentMoveset.get(indexTarget)) )
+				for (Position p : currentMoveset)
+					System.out.println(p);
+				if ( targetResultsInCheckState(currentPiece , player , currentMoveset.get(indexTarget)) )
 					return false;
 			}
 		}
